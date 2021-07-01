@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[8],{hkpG:function(e,t,a){"use strict";a.r(t);var n=a("FdF9"),l=a("Nhdc"),r=a("0lfv");t.default=function(){return n.default.createElement(l.d,{page:r.a.work.name},n.default.createElement(l.e,{title:r.a.work.title}),n.default.createElement(l.f,null))}}}]);
+//# sourceMappingURL=component---src-pages-work-tsx-739b64bbf15422d121db.js.map

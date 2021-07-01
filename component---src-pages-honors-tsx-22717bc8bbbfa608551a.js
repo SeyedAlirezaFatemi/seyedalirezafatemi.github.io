@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[6],{jv5u:function(e,t,n){"use strict";n.r(t);var a=n("FdF9"),l=n("Nhdc"),u=n("0lfv");t.default=function(){return a.default.createElement(l.d,{page:u.a.honors.name},a.default.createElement(l.e,{title:u.a.honors.title}),a.default.createElement(l.c,null))}}}]);
+//# sourceMappingURL=component---src-pages-honors-tsx-22717bc8bbbfa608551a.js.map
