@@ -1,19 +1,18 @@
 import { useTheme } from "next-themes";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { MouseEventHandler } from "react";
+import { twMerge } from "tailwind-merge";
 
 export default function Header() {
   const router = useRouter();
-  console.log(router.asPath);
   return (
     <header className="my-6 text-center flex flex-row justify-between">
       <HeaderItem text="HOME" path="/" />
-      <HeaderItem text="WORK" path="work" />
+      <HeaderItem text="WORK" path="/work" />
       <Torch />
-      <HeaderItem text="HONORS" path="honors" />
-      <HeaderItem text="BLOG" path="blog" />
+      <HeaderItem text="HONORS" path="/honors" />
+      <HeaderItem text="BLOG" path="/blog" />
     </header>
   );
 }
@@ -24,11 +23,12 @@ function HeaderItem({ text, path }: { text: string; path: string }) {
     e.preventDefault();
     router.push(path);
   };
+  const className = twMerge(
+    "basis-32 h-12 font-medium border-2 border-transparent",
+    router.pathname == path ? "border-b-black dark:border-b-gray-400" : null
+  );
   return (
-    <button
-      className="basis-32 h-12 font-medium border-2 border-transparent border-b-black dark:border-b-gray-400"
-      onClick={handleClick}
-    >
+    <button className={className} onClick={handleClick}>
       {text}
     </button>
   );
