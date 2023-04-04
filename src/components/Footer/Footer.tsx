@@ -32,13 +32,13 @@ export function Footer() {
     <footer className="flex flex-col items-center justify-center w-full h-fit space-y-4">
       <div className="flex flex-row items-center justify-center w-full space-x-4">
         <a href="https://github.com/SeyedAlirezaFatemi" target="_blank">
-          <FaTelegramPlane size={24} />
+          <FaGithub size={24} />
         </a>
         <a
           href="https://www.linkedin.com/in/seyed-alireza-fatemi-jahromi"
           target="_blank"
         >
-          <FaGithub size={24} />
+          <FaLinkedin size={24} />
         </a>
         <a href="https://www.instagram.com/_alireza_fa_/" target="_blank">
           <FaInstagram size={24} />
@@ -47,7 +47,7 @@ export function Footer() {
           <FaTwitter size={24} />
         </a>
         <a href="https://t.me/OriginalAngel" target="_blank">
-          <FaLinkedin size={24} />
+          <FaTelegramPlane size={24} />
         </a>
         <a href="mailto:seyedalirezafatemijahromi@gmail.com" target="_blank">
           <TbBrandGmail size={24} />
