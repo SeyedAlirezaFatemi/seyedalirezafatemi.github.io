@@ -10,6 +10,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <div className="p-20">
         <Header />
         <Component {...pageProps} />
+        <div className="divider"></div>
         <Footer />
       </div>
     </ThemeProvider>
