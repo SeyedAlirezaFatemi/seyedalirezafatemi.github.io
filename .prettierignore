@@ -1,0 +1,6 @@
+.prettierignore
+build
+.next
+pnpm-lock.yaml
+Dockerfile
+public
