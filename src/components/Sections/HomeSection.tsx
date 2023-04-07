@@ -1,8 +1,12 @@
-export function HomeSection(params: any) {
+import { SectionHeader } from '@/components/Typography/Headers';
+
+export function HomeSection() {
   return (
     <div>
       <div className="px-20">
-        <h1 className="text-center">Seyed Alireza Fatemi Jahromi</h1>
+        <SectionHeader className="text-center">
+          Seyed Alireza Fatemi Jahromi
+        </SectionHeader>
         <div className="flex flex-row flex-wrap items-center justify-items-center gap-12">
           <div className="avatar flex-initial">
             <div className="avatar w-48 rounded-full">

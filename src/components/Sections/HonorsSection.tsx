@@ -1,10 +1,11 @@
 import { useTheme } from 'next-themes';
+import { SectionHeader } from '@/components/Typography/Headers';
 import Image from 'next/image';
 
 export default function HonorsSection() {
   return (
     <div className="flex text-center">
-      <h1>Honors</h1>
+      <SectionHeader className="text-center">Honors</SectionHeader>
       <HonorIcon />
     </div>
   );
