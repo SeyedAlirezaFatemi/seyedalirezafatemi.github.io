@@ -1,5 +1,5 @@
-import HonorsSection from "@/components/Sections/HonorsSection";
-import Head from "next/head";
+import HonorsSection from '@/components/Sections/HonorsSection';
+import Head from 'next/head';
 
 export default function Honors() {
   return (

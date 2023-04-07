@@ -1,5 +1,5 @@
-import WorkSection from "@/components/Sections/WorkSection";
-import Head from "next/head";
+import WorkSection from '@/components/Sections/WorkSection';
+import Head from 'next/head';
 
 export default function Work() {
   return (

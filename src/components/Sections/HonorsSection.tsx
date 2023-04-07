@@ -1,5 +1,5 @@
-import { useTheme } from "next-themes";
-import Image from "next/image";
+import { useTheme } from 'next-themes';
+import Image from 'next/image';
 
 export default function HonorsSection() {
   return (
@@ -12,10 +12,10 @@ export default function HonorsSection() {
 
 export function HonorIcon() {
   const { theme, setTheme } = useTheme();
-  const isDark = theme === "dark";
+  const isDark = theme === 'dark';
   return (
     <Image
-      src={isDark ? "/trophy_dark.svg" : "/trophy_light.svg"}
+      src={isDark ? '/trophy_dark.svg' : '/trophy_light.svg'}
       alt="Honor"
       width={24}
       height={24}

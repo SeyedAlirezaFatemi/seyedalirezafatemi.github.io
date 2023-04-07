@@ -1,5 +1,5 @@
-import { twMerge } from "tailwind-merge";
-import styles from "./work.module.css";
+import { twMerge } from 'tailwind-merge';
+import styles from './work.module.css';
 
 export default function WorkSection() {
   return (
@@ -7,8 +7,8 @@ export default function WorkSection() {
       <h1>Work & Research Experiences</h1>
       <span
         className={twMerge(
-          "no-underline text-inherit block uppercase font-semibold tracking-wide w-fit",
-          "bg-no-repeat bg-gradient-to-r from-sky-500 to-indigo-500",
+          'block w-fit font-semibold uppercase tracking-wide text-inherit no-underline',
+          'bg-gradient-to-r from-sky-500 to-indigo-500 bg-no-repeat',
           styles.link
         )}
       >
