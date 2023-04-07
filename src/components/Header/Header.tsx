@@ -1,45 +1,58 @@
-import type { MouseEventHandler } from 'react';
-import { useTheme } from 'next-themes';
+import { Bars3Icon } from '@heroicons/react/24/solid';
+import React, { useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
 
-export default function Header() {
+export type HeaderProps = {
+  links: { href: string; text: string }[];
+  rootClassName?: string;
+};
+export default function Header({ links, rootClassName }: HeaderProps) {
+  const [showDrawer, setShowDrawer] = useState(false);
+
   return (
-    <header className="my-6 flex flex-row justify-between text-center">
-      <HeaderItem text="HOME" path="/" />
-      <HeaderItem text="WORK" path="/work" />
-      <Torch />
-      <HeaderItem text="HONORS" path="/honors" />
-      <HeaderItem text="BLOG" path="/blog" />
+    <header className={twMerge('px-3 py-10 text-white', rootClassName)}>
+      <div className="container mx-auto flex items-center justify-between lg:justify-start">
+        <nav className="mr-10 hidden w-full lg:flex">
+          {links.map((it) => (
+            <a
+              className={twMerge(
+                'rounded-lg px-3 py-2 font-medium hover:bg-blue-200 hover:text-gray-900'
+              )}
+              href={it.href}
+              key={it.href}
+            >
+              {it.text}
+            </a>
+          ))}
+        </nav>
+        <button
+          className={twMerge(
+            'block rounded-lg px-3 py-2 font-medium lg:hidden'
+          )}
+          onClick={() => setShowDrawer(!showDrawer)}
+        >
+          <Bars3Icon className={twMerge('h-8 w-8')} />
+        </button>
+      </div>
+      {showDrawer && (
+        <div className={twMerge('mt-2 p-4 text-xs')}>
+          <nav>
+            {links.map((it) => (
+              <a
+                className={twMerge(
+                  'block rounded-lg px-3 py-2 font-medium hover:bg-blue-200 hover:text-gray-900',
+                  'dark:text-gray-100 dark:hover:text-gray-900'
+                )}
+                href={it.href}
+                key={it.href}
+              >
+                {it.text}
+              </a>
+            ))}
+          </nav>
+        </div>
+      )}
     </header>
-  );
-}
-
-function HeaderItem({ text, path }: { path: string; text: string }) {
-  const router = useRouter();
-  const className = twMerge(
-    'basis-32 h-12 font-medium border-2 border-transparent',
-    router.pathname == path ? 'border-b-black dark:border-b-gray-400' : null
-  );
-  return (
-    <Link className={className} href={path}>
-      {text}
-    </Link>
-  );
-}
-
-function Torch() {
-  const { theme, setTheme } = useTheme();
-  return (
-    <Image
-      className="-mt-10 cursor-pointer"
-      src={theme == 'light' ? '/on.png' : '/off.png'}
-      onClick={() => setTheme(theme == 'light' ? 'dark' : 'light')}
-      alt="logo"
-      width="80"
-      height="140"
-    />
   );
 }
