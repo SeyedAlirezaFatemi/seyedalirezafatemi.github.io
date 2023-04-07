@@ -12,7 +12,7 @@ export function HomeSection(params: any) {
           <div className="flex-1">
             <p>
               <span>
-                Master&sbquo;s Student in Computer Science at Aalto University
+                Master&rsquo;s Student in Computer Science at Aalto University
                 <br />
                 Minor in Game Design and Development
               </span>
@@ -69,7 +69,7 @@ export function HomeSection(params: any) {
         <li>3D Modeling & Printing</li>
         <li>Data Science & Visualization</li>
         <li>Software & Web Development (Especially Front-end)</li>
-        <li>A lot of other things I haven&sbquo;t discovered yet!</li>
+        <li>A lot of other things I haven&rsquo;t discovered yet!</li>
       </ul>
       <div className="divider"></div>
       <h1>Research Interests</h1>
@@ -77,7 +77,7 @@ export function HomeSection(params: any) {
         <li>Visual Computing (Computer Graphics & Vision)</li>
         <li>Machine Learning & Deep Learning</li>
         <li>Geometry Processing & Geometric Deep Learning</li>
-        <li>A lot of other things I haven&sbquo;t discovered yet!</li>
+        <li>A lot of other things I haven&rsquo;t discovered yet!</li>
       </ul>
     </div>
   );

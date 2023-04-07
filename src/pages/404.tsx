@@ -11,7 +11,7 @@ export default function PageNotFound() {
         height={500}
       />
       <h1>404 - Page Not Found</h1>
-      <p>Oops! It seems like you&sbquo;ve ventured into uncharted territory.</p>
+      <p>Oops! It seems like you&rsquo;ve ventured into uncharted territory.</p>
     </div>
   );
 }
