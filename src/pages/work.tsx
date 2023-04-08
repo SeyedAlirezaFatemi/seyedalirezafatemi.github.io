@@ -22,11 +22,11 @@ export default function Work({ experiences }: { experiences: Experience[] }) {
 
 const getAllExperiences = async () => {
   const experiences = await notionClient.databases.query({
-    database_id: process.env.DATABASE_ID as string,
+    database_id: process.env.WORK_DATABASE_ID as string,
     sorts: [
       {
         property: 'Order',
-        direction: 'ascending',
+        direction: 'descending',
       },
     ],
   });
@@ -35,20 +35,18 @@ const getAllExperiences = async () => {
   for (const experience of allExperiences) {
     const mdblocks = await n2m.pageToMarkdown(experience.id);
     const mdString = n2m.toMarkdownString(mdblocks);
-    // @ts-ignore
     experience.description = mdString;
   }
 
-  return allExperiences
-    .map((experience) => ({
-      id: experience.id,
-      company: experience.properties.Company.title[0].plain_text,
-      place: experience.properties.Place.rich_text[0].plain_text,
-      title: experience.properties.Title.rich_text[0].plain_text,
-      date: experience.properties.Date.rich_text[0].plain_text,
-      description: experience.description,
-    }))
-    .reverse();
+  return allExperiences.map((experience) => ({
+    id: experience.id,
+    company: experience.properties.Company.title[0].plain_text,
+    place: experience.properties.Place.rich_text[0].plain_text,
+    title: experience.properties.Title.rich_text[0].plain_text,
+    date: experience.properties.Date.rich_text[0].plain_text,
+    link: experience.properties.Link.rich_text[0].plain_text,
+    description: experience.description,
+  }));
 };
 
 export const getStaticProps = async () => {

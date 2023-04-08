@@ -9,6 +9,7 @@ export type Experience = {
   date: string;
   description: string;
   id: string;
+  link: string;
   place: string;
   title: string;
 };
@@ -31,6 +32,7 @@ export default function WorkSection({
             title={experience.title}
             date={experience.date}
             description={experience.description}
+            link={experience.link}
           />
         ))}
       </div>
@@ -43,11 +45,13 @@ function WorkItem({
   company,
   date,
   description,
+  link,
 }: {
   children?: React.ReactNode;
   company: string;
   date: string;
   description: string;
+  link: string;
   title: string;
 }) {
   return (
@@ -59,11 +63,13 @@ function WorkItem({
           styles.link
         )}
       >
-        {company}
+        <a href={link} target="_blank" rel="noreferrer">
+          {company}
+        </a>
       </h3>
       <h4 className="pt-1 text-sm font-medium">{title}</h4>
       <span className="text-sm text-zinc-500">{date}</span>
-      <ReactMarkdown className="leading-tight prose max-w-none pt-1 text-justify xl:prose-lg 2xl:prose-xl">
+      <ReactMarkdown className="prose max-w-none pt-1 text-justify leading-tight xl:prose-lg 2xl:prose-xl">
         {description}
       </ReactMarkdown>
     </div>
