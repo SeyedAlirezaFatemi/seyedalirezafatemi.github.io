@@ -1,7 +1,9 @@
+import { n2m, notionClient } from '@/components/Notion/client';
+import type { Experience } from '@/components/Sections/WorkSection';
 import WorkSection from '@/components/Sections/WorkSection';
 import Head from 'next/head';
 
-export default function Work() {
+export default function Work({ experiences }: { experiences: Experience[] }) {
   return (
     <>
       <Head>
@@ -12,8 +14,50 @@ export default function Work() {
         />
       </Head>
       <main>
-        <WorkSection />
+        <WorkSection experiences={experiences} />
       </main>
     </>
   );
 }
+
+const getAllExperiences = async () => {
+  const experiences = await notionClient.databases.query({
+    database_id: process.env.DATABASE_ID as string,
+    sorts: [
+      {
+        property: 'Order',
+        direction: 'ascending',
+      },
+    ],
+  });
+
+  const allExperiences = experiences.results;
+  for (const experience of allExperiences) {
+    const mdblocks = await n2m.pageToMarkdown(experience.id);
+    const mdString = n2m.toMarkdownString(mdblocks);
+    // @ts-ignore
+    experience.description = mdString;
+  }
+
+  return allExperiences
+    .map((experience) => ({
+      id: experience.id,
+      company: experience.properties.Company.title[0].plain_text,
+      place: experience.properties.Place.rich_text[0].plain_text,
+      title: experience.properties.Title.rich_text[0].plain_text,
+      date: experience.properties.Date.rich_text[0].plain_text,
+      description: experience.description,
+    }))
+    .reverse();
+};
+
+export const getStaticProps = async () => {
+  const data = await getAllExperiences();
+
+  return {
+    props: {
+      experiences: data,
+    },
+    revalidate: 60,
+  };
+};
