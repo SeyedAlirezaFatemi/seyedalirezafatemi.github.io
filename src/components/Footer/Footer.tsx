@@ -62,7 +62,7 @@ export function Footer() {
       </div>
       <p>&ldquo;I choose the labyrinth.&rdquo;</p>
       <p>
-        Design & Development By Seyed Alireza FatemiJahromi | Logo from{' '}
+        Design & Development By Seyed Alireza Fatemi Jahromi | Logo from{' '}
         <a
           href="https://dribbble.com/shots/7896171-Alone-In-The-Dark"
           target="_blank"

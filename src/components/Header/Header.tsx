@@ -36,7 +36,6 @@ function HeaderItem({ text, path }: { path: string; text: string }) {
 
 function Torch() {
   const { theme, setTheme } = useTheme();
-  console.log(theme);
   return (
     <Image
       className="-mt-10 cursor-pointer"
