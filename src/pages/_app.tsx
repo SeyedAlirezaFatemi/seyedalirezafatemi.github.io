@@ -7,10 +7,10 @@ import type { AppProps } from 'next/app';
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider>
-      <div className="p-20">
+      <div className="mx-auto max-w-4xl p-4">
         <Header />
         <Component {...pageProps} />
-        <div className="divider"></div>
+        <div className="divider" />
         <Footer />
       </div>
     </ThemeProvider>

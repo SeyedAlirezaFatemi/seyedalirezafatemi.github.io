@@ -29,7 +29,7 @@ const links = [
 
 export function Footer() {
   return (
-    <footer className="flex h-fit w-full flex-col items-center justify-center space-y-4">
+    <footer className="flex h-fit w-full flex-col items-center justify-center space-y-4 text-gray-500">
       <div className="flex w-full flex-row items-center justify-center space-x-4">
         <a href="https://github.com/SeyedAlirezaFatemi" target="_blank">
           <FaGithub size={24} />
@@ -62,7 +62,7 @@ export function Footer() {
       </div>
       <p>&ldquo;I choose the labyrinth.&rdquo;</p>
       <p>
-        Design & Development By Seyed Alireza FatemiJahromi | Logo from{' '}
+        Design & Development By Seyed Alireza Fatemi Jahromi | Logo from{' '}
         <a
           href="https://dribbble.com/shots/7896171-Alone-In-The-Dark"
           target="_blank"

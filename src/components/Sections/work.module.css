@@ -1,5 +1,5 @@
 .link {
-  background-image: linear-gradient("to right", #00c6ff, #0072ff);
+  background-image: linear-gradient(to right, #00c6ff, #0072ff);
   background-size: 100% 0.2rem;
   background-position: 0 100%;
   transition: background-size 0.25s ease-in;
