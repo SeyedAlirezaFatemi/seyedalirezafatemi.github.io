@@ -39,7 +39,7 @@ function Torch() {
   return (
     <Image
       className="-mt-10 cursor-pointer"
-      src={theme == 'light' ? '/on.png' : '/off.png'}
+      src={theme == 'dark' ? '/on.png' : '/off.png'}
       onClick={() => setTheme(theme == 'light' ? 'dark' : 'light')}
       alt="logo"
       width="80"

@@ -29,7 +29,7 @@ const links = [
 
 export function Footer() {
   return (
-    <footer className="flex h-fit w-full flex-col items-center justify-center space-y-4">
+    <footer className="flex h-fit w-full flex-col items-center justify-center space-y-4 text-gray-500">
       <div className="flex w-full flex-row items-center justify-center space-x-4">
         <a href="https://github.com/SeyedAlirezaFatemi" target="_blank">
           <FaGithub size={24} />
