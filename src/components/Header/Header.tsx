@@ -11,7 +11,7 @@ export default function Header({ links, rootClassName }: HeaderProps) {
   const [showDrawer, setShowDrawer] = useState(false);
 
   return (
-    <header className={twMerge('px-3 py-10 text-white', rootClassName)}>
+    <header className={rootClassName}>
       <div className="container mx-auto flex items-center justify-between lg:justify-start">
         <nav className="mr-10 hidden w-full lg:flex">
           {links.map((it) => (

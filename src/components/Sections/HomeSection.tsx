@@ -1,13 +1,21 @@
+import Image from 'next/image';
+
 export function HomeSection(params: any) {
   return (
     <div>
-      <div className="px-20">
-        <h1 className="text-center">Seyed Alireza Fatemi Jahromi</h1>
+      <div className="lg:px-20">
+        <h1 className="py-10 text-center uppercase">
+          Seyed Alireza Fatemi Jahromi
+        </h1>
         <div className="flex flex-row flex-wrap items-center justify-items-center gap-12">
-          <div className="avatar flex-initial">
-            <div className="avatar w-48 rounded-full">
-              <img src="/avatar.jpg" />
-            </div>
+          <div className="flex w-full  items-center justify-center">
+            <Image
+              className="h-48 w-48 rounded-full"
+              alt="Seyed Alireza Fatemi Jahromi"
+              src="/avatar.jpg"
+              width={192}
+              height={192}
+            />
           </div>
           <div className="flex-1">
             <p>
