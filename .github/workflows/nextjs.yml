@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main
+  env:
+      NOTION_TOKEN: ${{ vars.NOTION_TOKEN }}
+      WORK_DATABASE_ID: ${{ vars.WORK_DATABASE_ID }}
+      HONORS_DATABASE_ID: ${{ vars.HONORS_DATABASE_ID }}
 
 jobs:
   build-and-deploy:
