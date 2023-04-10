@@ -35,10 +35,11 @@ const getAllExperiences = async () => {
   for (const experience of allExperiences) {
     const mdblocks = await n2m.pageToMarkdown(experience.id);
     const mdString = n2m.toMarkdownString(mdblocks);
-    experience.description = mdString;
+    // TODO: Fix this
+    (experience as any).description = mdString;
   }
 
-  return allExperiences.map((experience) => ({
+  return allExperiences.map((experience: any) => ({
     id: experience.id,
     company: experience.properties.Company.title[0].plain_text,
     place: experience.properties.Place.rich_text[0].plain_text,

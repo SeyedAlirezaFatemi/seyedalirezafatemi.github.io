@@ -35,10 +35,11 @@ const getAllHonors = async () => {
   for (const honor of allHonors) {
     const mdblocks = await n2m.pageToMarkdown(honor.id);
     const mdString = n2m.toMarkdownString(mdblocks);
-    honor.description = mdString;
+    // TODO: Fix this
+    (honor as any).description = mdString;
   }
 
-  return allHonors.map((honor) => ({
+  return allHonors.map((honor: any) => ({
     id: honor.id,
     date: honor.properties.Date.rich_text[0].plain_text,
     place: honor.properties.Place.rich_text[0].plain_text,
