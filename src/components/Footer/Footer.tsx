@@ -1,36 +1,36 @@
-import Link from "next/link";
 import {
   FaTelegramPlane,
   FaGithub,
   FaInstagram,
   FaTwitter,
   FaLinkedin,
-} from "react-icons/fa";
-import { TbBrandGmail } from "react-icons/tb";
+} from 'react-icons/fa';
+import { TbBrandGmail } from 'react-icons/tb';
+import Link from 'next/link';
 
 const links = [
   {
-    name: "/home",
-    to: "/",
+    name: '/home',
+    to: '/',
   },
   {
-    name: "/work",
-    to: "/work",
+    name: '/work',
+    to: '/work',
   },
   {
-    name: "/honors",
-    to: "/honors",
+    name: '/honors',
+    to: '/honors',
   },
   {
-    name: "/blog",
-    to: "/blog",
+    name: '/blog',
+    to: '/blog',
   },
 ];
 
 export function Footer() {
   return (
-    <footer className="flex flex-col items-center justify-center w-full h-fit space-y-4">
-      <div className="flex flex-row items-center justify-center w-full space-x-4">
+    <footer className="flex h-fit w-full flex-col items-center justify-center space-y-4 text-gray-500">
+      <div className="flex w-full flex-row items-center justify-center space-x-4">
         <a href="https://github.com/SeyedAlirezaFatemi" target="_blank">
           <FaGithub size={24} />
         </a>
@@ -53,19 +53,21 @@ export function Footer() {
           <TbBrandGmail size={24} />
         </a>
       </div>
-      <div className="flex flex-row items-center justify-center w-full space-x-4">
+      <div className="flex w-full flex-row items-center justify-center space-x-4">
         {links.map((link) => (
-          <Link href={link.to}>{link.name}</Link>
+          <Link key={link.to} href={link.to}>
+            {link.name}
+          </Link>
         ))}
       </div>
-      <p>"I choose the labyrinth."</p>
+      <p>&ldquo;I choose the labyrinth.&rdquo;</p>
       <p>
-        Design & Development By Seyed Alireza FatemiJahromi | Logo from{" "}
+        Design & Development By Seyed Alireza Fatemi Jahromi | Logo from{' '}
         <a
           href="https://dribbble.com/shots/7896171-Alone-In-The-Dark"
           target="_blank"
           rel="noopener noreferrer"
-          className="link link-info"
+          className="link-info link"
         >
           source
         </a>

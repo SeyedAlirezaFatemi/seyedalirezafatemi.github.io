@@ -1,43 +1,80 @@
-import { twMerge } from "tailwind-merge";
-import styles from "./work.module.css";
+import React from 'react';
+import ReactMarkdown from 'react-markdown';
+import { twMerge } from 'tailwind-merge';
+import styles from './work.module.css';
+import { SectionHeader } from '@/components/Typography/Headers';
 
-export default function WorkSection() {
+export type Experience = {
+  company: string;
+  date: string;
+  description: string;
+  id: string;
+  link: string;
+  place: string;
+  title: string;
+};
+
+export default function WorkSection({
+  experiences,
+}: {
+  experiences: Experience[];
+}) {
   return (
     <div className="text-center">
-      <h1>Work & Research Experiences</h1>
-      <span
-        className={twMerge(
-          "no-underline text-inherit block uppercase font-semibold tracking-wide w-fit",
-          "bg-no-repeat bg-gradient-to-r from-sky-500 to-indigo-500",
-          styles.link
-        )}
-      >
-        Nokia, Advanced Technology Group
-      </span>
+      <SectionHeader className="mb-8 text-center">
+        Work & Research Experiences
+      </SectionHeader>
+      <div className="flex flex-col flex-wrap space-y-4">
+        {experiences.map((experience) => (
+          <WorkItem
+            key={experience.id}
+            company={`${experience.company}, ${experience.place}`}
+            title={experience.title}
+            date={experience.date}
+            description={experience.description}
+            link={experience.link}
+          />
+        ))}
+      </div>
     </div>
   );
 }
 
-/**
- * link: {
-    textDecoration: "none",
-    color: "inherit",
-    display: "block",
-    textTransform: "uppercase",
-    fontWeight: 600,
-    letterSpacing: 1.2,
-    paddingTop: "2rem",
-    width: "fit-content",
-    "&:link": {
-      color: "inherit",
-    },
-    backgroundImage: "linear-gradient(to right, #00c6ff, #0072ff)",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "100% 0.2em",
-    backgroundPosition: "0 100%",
-    transition: "background-size 0.25s ease-in",
-    "&:hover": {
-      backgroundSize: "100% 50%",
-    },
-  },
- */
+function WorkItem({
+  title,
+  company,
+  date,
+  description,
+  link,
+}: {
+  children?: React.ReactNode;
+  company: string;
+  date: string;
+  description: string;
+  link: string;
+  title: string;
+}) {
+  return (
+    <div className="text-start">
+      <h3
+        className={twMerge(
+          'block w-fit text-center text-xl font-semibold uppercase tracking-wide no-underline',
+          'bg-gradient-to-r from-sky-500 to-indigo-500 bg-no-repeat',
+          styles.link
+        )}
+      >
+        <a href={link} target="_blank" rel="noreferrer">
+          {company}
+        </a>
+      </h3>
+      <h4 className="pt-1 text-sm font-medium">{title}</h4>
+      <span className="text-sm text-zinc-500">{date}</span>
+      <ReactMarkdown
+        linkTarget="_blank"
+        className="prose max-w-none pt-1 text-justify leading-tight xl:prose-lg 2xl:prose-xl"
+      >
+        {description}
+      </ReactMarkdown>
+    </div>
+  );
+}
