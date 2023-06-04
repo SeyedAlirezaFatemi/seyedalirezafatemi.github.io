@@ -79,6 +79,7 @@ jobs:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           WORK_DATABASE_ID: ${{ secrets.WORK_DATABASE_ID }}
           HONORS_DATABASE_ID: ${{ secrets.HONORS_DATABASE_ID }}
+          BLOG_DATABASE_ID: ${{ secrets.BLOG_DATABASE_ID }}
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Static HTML export with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next export
