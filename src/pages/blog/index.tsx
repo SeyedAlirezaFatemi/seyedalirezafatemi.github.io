@@ -33,7 +33,9 @@ export default function BlogPosts({ blogPosts }: Props) {
                 </p>
               ))}
               <p className="mx-4 text-gray-500">|</p>
-              <p className="text-gray-500">{post.created}</p>
+              <p className="text-gray-500">
+                {new Date(post.created).toLocaleDateString('en-GB')}
+              </p>
             </div>
             <div className="mt-2 flex items-center">
               {post.tags.map((tag) => (
