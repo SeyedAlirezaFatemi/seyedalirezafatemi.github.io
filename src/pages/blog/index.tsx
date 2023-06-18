@@ -9,7 +9,7 @@ interface Props {
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const blogPosts = await getBlogPosts();
-  return { props: { blogPosts } };
+  return { props: { blogPosts }, revalidate: 60 };
 };
 
 export default function BlogPosts({ blogPosts }: Props) {

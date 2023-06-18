@@ -17,7 +17,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const blogPost = await getBlogPost(params?.slug as string);
 
-  return { props: { blogPost } };
+  return {
+    props: {
+      blogPost,
+    },
+    revalidate: 60,
+  };
 };
 
 export default function BlogPostPage({ blogPost }: Props) {
