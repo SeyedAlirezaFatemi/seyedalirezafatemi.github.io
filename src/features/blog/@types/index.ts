@@ -3,6 +3,7 @@ import type { MdBlock } from 'notion-to-md/build/types';
 export interface BlogPost {
   authors: string[];
   content?: string | MdBlock[];
+  cover?: string;
   created: string;
   description: string;
   published: boolean;
@@ -59,9 +60,9 @@ export interface Parent {
 export interface Properties {
   author: Author;
   created: Created;
-  description: Description;
   published: Published;
   slug: Slug;
+  summary: Description;
   tags: Tags;
   title: Title;
   updated: Updated;
