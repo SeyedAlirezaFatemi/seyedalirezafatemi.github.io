@@ -11,7 +11,7 @@ n2m.setCustomTransformer('video', async (block) => {
   const { video } = block as any;
   const { type } = video;
   const video_url = video[type].url;
-  return `<video class="w-full" src="${video_url}" controls> Your browser does not support the video tag. </video>`;
+  return `<iframe class="w-full h-96" src="${video_url}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
 });
 
 export { n2m };
