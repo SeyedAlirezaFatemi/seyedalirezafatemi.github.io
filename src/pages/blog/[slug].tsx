@@ -3,6 +3,7 @@ import ReactMarkdown from 'react-markdown';
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import type { BlogPost } from '@/features/blog/@types';
 import { getBlogPost, getBlogPosts } from '@/utils/notion';
+import rehypeRaw from 'rehype-raw';
 
 interface Props {
   blogPost: BlogPost;
@@ -46,6 +47,7 @@ export default function BlogPostPage({ blogPost }: Props) {
       <ReactMarkdown
         linkTarget="_blank"
         className="prose max-w-none text-justify leading-tight xl:prose-lg 2xl:prose-xl"
+        rehypePlugins={[rehypeRaw]}
       >
         {blogPost.content as string}
       </ReactMarkdown>
