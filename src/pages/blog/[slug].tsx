@@ -4,6 +4,7 @@ import type { GetStaticPaths, GetStaticProps } from 'next';
 import type { BlogPost } from '@/features/blog/@types';
 import { getBlogPost, getBlogPosts } from '@/utils/notion';
 import rehypeRaw from 'rehype-raw';
+import Image from 'next/image';
 
 interface Props {
   blogPost: BlogPost;
@@ -29,20 +30,29 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
 export default function BlogPostPage({ blogPost }: Props) {
   return (
     <article className="container mx-auto">
-      <div className="flex">
+      {blogPost.cover && (
+        <Image
+          width={600}
+          height={400}
+          src={blogPost.cover}
+          alt={blogPost.title}
+          className="w-full rounded"
+        />
+      )}
+      <div className="mb-4">
         <h2 className="mb-4 text-4xl font-bold">{blogPost.title}</h2>
-        <div className="ml-4 flex items-center">
+        <div className="flex items-center">
+          {blogPost.authors.map((author) => (
+            <p key={author} className="ml-4 text-gray-500">
+              {author}
+            </p>
+          ))}
           <div className="mx-4 text-gray-500">|</div>
           <p className="text-gray-500">
             {new Date(blogPost.created).toLocaleDateString('en-GB')}
           </p>
-          <div className="mx-4 text-gray-500">|</div>
-          {blogPost.authors.map((author) => (
-            <p key={author} className="text-gray-500">
-              {author}
-            </p>
-          ))}
         </div>
+        <div className="my-2 h-1 w-full rounded bg-gray-500 opacity-50" />
       </div>
       <ReactMarkdown
         linkTarget="_blank"

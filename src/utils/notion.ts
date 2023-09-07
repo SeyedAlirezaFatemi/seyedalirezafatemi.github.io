@@ -55,6 +55,7 @@ export async function getBlogPost(slug: string): Promise<BlogPost> {
     slug: page.properties.slug.formula.string,
     published: page.properties.published.checkbox.valueOf(),
     content,
+    cover: page.cover?.external?.url ?? null,
     tags: page.properties.tags.multi_select.map((tag) => tag.name),
   };
 }
