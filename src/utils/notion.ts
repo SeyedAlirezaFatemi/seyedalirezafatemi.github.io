@@ -22,7 +22,9 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
     slug: page.properties.slug.formula.string,
     published: page.properties.published.checkbox.valueOf(),
     tags: page.properties.tags.multi_select.map((tag) => tag.name),
-    cover: page.cover?.external?.url ?? 'https://loremflickr.com/150/150',
+    cover:
+      page.cover?.[page?.cover?.type ?? 'file']?.url ??
+      'https://loremflickr.com/150/150',
   }));
 }
 
@@ -55,7 +57,7 @@ export async function getBlogPost(slug: string): Promise<BlogPost> {
     slug: page.properties.slug.formula.string,
     published: page.properties.published.checkbox.valueOf(),
     content,
-    cover: page.cover?.external?.url ?? null,
+    cover: page.cover?.[page?.cover?.type ?? 'file']?.url ?? null,
     tags: page.properties.tags.multi_select.map((tag) => tag.name),
   };
 }
