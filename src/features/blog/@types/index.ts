@@ -3,7 +3,7 @@ import type { MdBlock } from 'notion-to-md/build/types';
 export interface BlogPost {
   authors: string[];
   content?: string | MdBlock[];
-  cover?: string;
+  cover: string | null;
   created: string;
   description: string;
   published: boolean;
@@ -39,11 +39,17 @@ export interface LastEditedBy {
 }
 
 export interface Cover {
-  external: External;
-  type: string;
+  external?: External;
+  file?: File;
+  type: 'file' | 'external';
 }
 
 export interface External {
+  url: string;
+}
+
+export interface File {
+  expiry_time: string;
   url: string;
 }
 
