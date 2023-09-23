@@ -5,6 +5,7 @@ export interface BlogPost {
   content?: string | MdBlock[];
   cover: string | null;
   created: string;
+  date: string;
   description: string;
   published: boolean;
   slug: string;
@@ -44,10 +45,6 @@ export interface Cover {
   type: 'file' | 'external';
 }
 
-export interface External {
-  url: string;
-}
-
 export interface File {
   expiry_time: string;
   url: string;
@@ -66,6 +63,7 @@ export interface Parent {
 export interface Properties {
   author: Author;
   created: Created;
+  date: NotionDate;
   published: Published;
   slug: Slug;
   summary: Description;
@@ -77,6 +75,20 @@ export interface Properties {
 export interface Created {
   created_time: string;
   id: string;
+  type: string;
+}
+
+export interface NotionDate {
+  date: {
+    start: string;
+  };
+  id: string;
+  type: string;
+}
+
+export interface Updated {
+  id: string;
+  last_edited_time: string;
   type: string;
 }
 
@@ -117,12 +129,6 @@ export interface Annotations {
   italic: boolean;
   strikethrough: boolean;
   underline: boolean;
-}
-
-export interface Updated {
-  id: string;
-  last_edited_time: string;
-  type: string;
 }
 
 export interface Author {
