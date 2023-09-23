@@ -50,7 +50,7 @@ module.exports = {
   plugins,
   rules: {
     'prettier/prettier': [
-      'error',
+      'warn',
       {
         usePrettierrc: true,
       },
@@ -59,6 +59,7 @@ module.exports = {
     '@typescript-eslint/consistent-type-imports': 'error',
     'typescript-sort-keys/interface': 'error',
     'typescript-sort-keys/string-enum': 'error',
+    'object-curly-spacing': ['error', 'always'],
     'no-relative-import-paths/no-relative-import-paths': [
       'warn',
       { allowSameFolder: true },
