@@ -13,19 +13,22 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
     },
   });
 
-  return (response.results as NotionBlogDto[]).map((page) => ({
-    title: page.properties.title.title[0].text.content,
-    created: page.properties.created.created_time,
-    updated: page.properties.updated.last_edited_time,
-    authors: page.properties.author?.people?.map((it) => it.object) ?? [],
-    description: page.properties.summary?.rich_text?.[0]?.text?.content ?? '',
-    slug: page.properties.slug.formula.string,
-    published: page.properties.published.checkbox.valueOf(),
-    tags: page.properties.tags.multi_select.map((tag) => tag.name),
-    cover:
-      page.cover?.[page?.cover?.type ?? 'file']?.url ??
-      'https://loremflickr.com/150/150',
-  }));
+  return (response.results as NotionBlogDto[])
+    .map((page) => ({
+      title: page.properties.title.title[0].text.content,
+      date: page.properties.date.date.start,
+      created: page.properties.created.created_time,
+      updated: page.properties.updated.last_edited_time,
+      authors: page.properties.author?.people?.map((it) => it.object) ?? [],
+      description: page.properties.summary?.rich_text?.[0]?.text?.content ?? '',
+      slug: page.properties.slug.formula.string,
+      published: page.properties.published.checkbox.valueOf(),
+      tags: page.properties.tags.multi_select.map((tag) => tag.name),
+      cover:
+        page.cover?.[page?.cover?.type ?? 'file']?.url ??
+        'https://loremflickr.com/150/150',
+    }))
+    .sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf());
 }
 
 export async function getBlogPost(slug: string): Promise<BlogPost> {
@@ -50,6 +53,7 @@ export async function getBlogPost(slug: string): Promise<BlogPost> {
 
   return {
     title: page.properties.title.title[0].text.content,
+    date: page.properties.date.date.start,
     created: page.properties.created.created_time,
     updated: page.properties.updated.last_edited_time,
     authors: page.properties.author?.people?.map((it) => it.object) ?? [],
