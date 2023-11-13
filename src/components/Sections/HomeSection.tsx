@@ -25,19 +25,27 @@ const ml = [
   'NumPy',
 ];
 
-const web = [
+const front = [
   'React',
+  'React Native',
   'Next.js',
   'Tailwind CSS',
-  'Node.js',
-  'Express.js',
-  'MongoDB',
-  'SQL',
+  'Native Android',
+];
+
+const back = [
+  'gRPC',
+  'REST',
   'GraphQL',
   'Django',
   'Flask',
+  'Kafka',
+  'OpenSearch',
   'Docker',
   'AWS',
+  'MongoDB',
+  'SQL',
+  'DynamoDB',
 ];
 
 const colNames = [
@@ -45,9 +53,11 @@ const colNames = [
   'Game Engines',
   '3D Modeling',
   'Machine Learning',
-  'Web',
+  'Frontend',
+  'Backend',
 ];
-const colValues = [languages, engines, modeling, ml, web];
+
+const colValues = [languages, engines, modeling, ml, front, back];
 
 export function HomeSection() {
   return (
@@ -119,12 +129,13 @@ export function HomeSection() {
       <SectionHeader className="pb-2 text-center">Interests</SectionHeader>
       <ul className="list-disc px-8 [&>li]:mb-0.5">
         <li>Game Design & Development & Graphics Programming</li>
-        <li>3D Modeling & Printing</li>
-        <li>Data Science & Visualization</li>
+        <li>Machine Learning & Generative AI & Visual Computing</li>
+        <li>Augmented & Virtual Reality</li>
         <li>Software & Web Development</li>
+        <li>Photogrammetry & 3D Modeling & Printing</li>
         <li>A lot of other things I haven&apos;t discovered yet!</li>
       </ul>
-      <div className="divider"></div>
+      {/* <div className="divider"></div>
       <SectionHeader className="pb-2 text-center">
         Research Interests
       </SectionHeader>
@@ -133,7 +144,7 @@ export function HomeSection() {
         <li>Machine Learning & Deep Learning</li>
         <li>Geometry Processing & Geometric Deep Learning</li>
         <li>A lot of other things I haven&apos;t discovered yet!</li>
-      </ul>
+      </ul> */}
       <div className="divider"></div>
       <SectionHeader className="pb-2 text-center">Education</SectionHeader>
       <ul className="list-disc px-8 [&>li]:mb-0.5">
@@ -141,7 +152,7 @@ export function HomeSection() {
           <span className="block font-semibold">
             Aalto University, Espoo, Finland
           </span>
-          <span className="block text-sm text-gray-500">GPA: 4.91/5</span>
+          <span className="block text-sm text-gray-500">GPA: 4.7/5</span>
           <span className="block">
             Master of Science in Computer Science (Big Data and Large-Scale
             Computing)
@@ -150,7 +161,7 @@ export function HomeSection() {
             Minor in Game Design and Development and Math&Arts
           </span>
           <span className="block text-sm text-gray-500">
-            Aug. 2021 - Expected Aug. 2024
+            Aug. 2021 - Expected Dec. 2024
           </span>
         </li>
         <li>
