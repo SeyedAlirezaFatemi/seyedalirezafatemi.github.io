@@ -2,62 +2,66 @@ import Photo from '@/assets/avatar.jpg';
 import { SectionHeader } from '@/components/Typography/Headers';
 import Image from 'next/image';
 
-const languages = [
-  'C/C++',
-  'C#',
-  'Python',
-  'JavaScript',
-  'TypeScript',
-  'Java',
-  'Kotlin',
+const skills = [
+  {
+    title: 'Programming Languages',
+    items: [
+      'C/C++',
+      'C#',
+      'Python',
+      'JavaScript',
+      'TypeScript',
+      'Java',
+      'Kotlin',
+    ],
+  },
+  {
+    title: 'Game Engines',
+    items: ['Unity', 'Unreal Engine'],
+  },
+  {
+    title: '3D Modeling',
+    items: ['Blender', 'Fusion 360', 'Reality Capture'],
+  },
+  {
+    title: 'Machine Learning',
+    items: [
+      'PyTorch',
+      'TensorFlow',
+      'Keras',
+      'Scikit-learn',
+      'pandas',
+      'NumPy',
+    ],
+  },
+  {
+    title: 'Frontend',
+    items: [
+      'React',
+      'React Native',
+      'Next.js',
+      'Tailwind CSS',
+      'Native Android',
+    ],
+  },
+  {
+    title: 'Backend',
+    items: [
+      'gRPC',
+      'REST',
+      'GraphQL',
+      'Django',
+      'Flask',
+      'Kafka',
+      'OpenSearch',
+      'Docker',
+      'AWS',
+      'MongoDB',
+      'SQL',
+      'DynamoDB',
+    ],
+  },
 ];
-
-const modeling = ['Blender', 'Fusion 360', 'Reality Capture'];
-
-const engines = ['Unity', 'Unreal Engine'];
-
-const ml = [
-  'PyTorch',
-  'TensorFlow',
-  'Keras',
-  'Scikit-learn',
-  'pandas',
-  'NumPy',
-];
-
-const front = [
-  'React',
-  'React Native',
-  'Next.js',
-  'Tailwind CSS',
-  'Native Android',
-];
-
-const back = [
-  'gRPC',
-  'REST',
-  'GraphQL',
-  'Django',
-  'Flask',
-  'Kafka',
-  'OpenSearch',
-  'Docker',
-  'AWS',
-  'MongoDB',
-  'SQL',
-  'DynamoDB',
-];
-
-const colNames = [
-  'Programming Languages',
-  'Game Engines',
-  '3D Modeling',
-  'Machine Learning',
-  'Frontend',
-  'Backend',
-];
-
-const colValues = [languages, engines, modeling, ml, front, back];
 
 export function HomeSection() {
   return (
@@ -86,7 +90,7 @@ export function HomeSection() {
               </span>
               <span className="inline-block">
                 <a
-                  className="link link-info"
+                  className="link-info link"
                   href="https://github.com/SeyedAlirezaFatemi"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -95,7 +99,7 @@ export function HomeSection() {
                 </a>
                 ,&nbsp;
                 <a
-                  className="link link-info"
+                  className="link-info link"
                   href="https://scholar.google.com/citations?user=YxRB1PAAAAAJ&hl=en&authuser=2"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -104,7 +108,7 @@ export function HomeSection() {
                 </a>
                 ,{' '}
                 <a
-                  className="link link-info"
+                  className="link-info link"
                   href="https://www.linkedin.com/in/seyed-alireza-fatemi-jahromi"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -113,7 +117,7 @@ export function HomeSection() {
                 </a>
                 ,{' '}
                 <a
-                  className="link link-info"
+                  className="link-info link"
                   href="/SeyedAlirezaFatemiJahromi.pdf"
                   target="_blank"
                   rel="noreferrer"
@@ -179,27 +183,20 @@ export function HomeSection() {
       </ul>
       <div className="divider"></div>
       <SectionHeader className="pb-2 text-center">Skills</SectionHeader>
-      <table>
-        <tbody>
-          {colNames.map((colName, index) => (
-            <tr key={index}>
-              <td className="w-fit">
-                <span className="mr-4 inline-block">{colName}</span>
-              </td>
-              <td>
-                {colValues[index].map((val, index) => (
-                  <div
-                    key={index}
-                    className="badge badge-ghost badge-lg m-2 p-4"
-                  >
-                    {val}
-                  </div>
-                ))}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <section>
+        {skills.map((it) => (
+          <div className="pb-2 pt-4 text-center md:text-left" key={it.title}>
+            <p className="text-lg font-bold">{it.title}</p>
+            <ul>
+              {it.items.map((skill) => (
+                <li className="badge-ghost badge badge-lg m-2 p-4" key={skill}>
+                  {skill}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </section>
     </div>
   );
 }
