@@ -1,8 +1,8 @@
 import type { GetStaticProps } from 'next';
 import type { BlogPost } from '@/features/blog/@types';
 import { getBlogPosts } from '@/utils/notion';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface Props {
   blogPosts: BlogPost[];
@@ -42,14 +42,15 @@ export default function BlogPosts({ blogPosts }: Props) {
             </div>
             <div className="flex flex-wrap justify-between">
               <div className="mt-4 flex items-center">
-                {post.authors.map((author) => (
-                  <p key={author} className="text-gray-500">
-                    {author}
-                  </p>
-                ))}
+                {/*{post.authors.map((author) => (*/}
+                {/*  <p key={author} className="text-gray-500">*/}
+                {/*    {author}*/}
+                {/*  </p>*/}
+                {/*))}*/}
+                <p className="text-gray-500">Alireza</p>
                 <p className="mx-4 text-gray-500">|</p>
                 <p className="text-gray-500">
-                  {new Date(post.created).toLocaleDateString('en-GB')}
+                  {new Date(post.date).toLocaleDateString('en-GB')}
                 </p>
               </div>
               {!!post.tags.length && (

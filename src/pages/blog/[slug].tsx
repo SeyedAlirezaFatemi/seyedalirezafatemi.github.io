@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import type { GetStaticPaths, GetStaticProps } from 'next';
+import rehypeRaw from 'rehype-raw';
 import type { BlogPost } from '@/features/blog/@types';
 import { getBlogPost, getBlogPosts } from '@/utils/notion';
-import rehypeRaw from 'rehype-raw';
 import Image from 'next/image';
 
 interface Props {
@@ -40,16 +40,17 @@ export default function BlogPostPage({ blogPost }: Props) {
         />
       )}
       <div className="mb-4">
-        <h2 className="mb-4 text-4xl font-bold">{blogPost.title}</h2>
+        <h2 className="mb-4 mt-2 text-4xl font-bold">{blogPost.title}</h2>
         <div className="flex items-center">
-          {blogPost.authors.map((author) => (
-            <p key={author} className="ml-4 text-gray-500">
-              {author}
-            </p>
-          ))}
+          {/*{blogPost.authors.map((author) => (*/}
+          {/*  <p key={author} className="ml-4 text-gray-500">*/}
+          {/*    {author}*/}
+          {/*  </p>*/}
+          {/*))}*/}
+          <p className="text-gray-500">Alireza</p>
           <div className="mx-4 text-gray-500">|</div>
           <p className="text-gray-500">
-            {new Date(blogPost.created).toLocaleDateString('en-GB')}
+            {new Date(blogPost.date).toLocaleDateString('en-GB')}
           </p>
         </div>
         <div className="my-2 h-1 w-full rounded bg-gray-500 opacity-50" />
