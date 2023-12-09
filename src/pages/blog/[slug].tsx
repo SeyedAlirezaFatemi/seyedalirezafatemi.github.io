@@ -1,4 +1,5 @@
 import React from 'react';
+import rehypeExternalLinks from 'rehype-external-links';
 import ReactMarkdown from 'react-markdown';
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import rehypeRaw from 'rehype-raw';
@@ -56,7 +57,7 @@ export default function BlogPostPage({ blogPost }: Props) {
         <div className="my-2 h-1 w-full rounded bg-gray-500 opacity-50" />
       </div>
       <ReactMarkdown
-        linkTarget="_blank"
+        remarkPlugins={[rehypeExternalLinks]}
         className="prose max-w-none text-justify leading-tight xl:prose-lg 2xl:prose-xl"
         rehypePlugins={[rehypeRaw]}
       >

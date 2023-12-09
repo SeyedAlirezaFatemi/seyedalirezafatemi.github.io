@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
+import rehypeExternalLinks from 'rehype-external-links';
+import rehypeRaw from 'rehype-raw';
 import { useTheme } from 'next-themes';
 import TrophyDark from '@/assets/trophy_dark.svg';
 import TrophyLight from '@/assets/trophy_light.svg';
@@ -21,7 +23,8 @@ export default function HonorsSection({ honors }: { honors: Honor[] }) {
         <div key={honor.id} className="py-4 first:pt-0 last:pb-0">
           <HonorIcon />
           <ReactMarkdown
-            linkTarget="_blank"
+            rehypePlugins={[rehypeExternalLinks]}
+            remarkPlugins={[rehypeRaw]}
             className="prose max-w-none text-justify leading-tight xl:prose-lg 2xl:prose-xl"
           >
             {honor.description}

@@ -76,7 +76,7 @@ export function HomeSection() {
               </span>
               <span className="inline-block">
                 <a
-                  className="link-info link"
+                  className="link link-info"
                   href="https://github.com/SeyedAlirezaFatemi"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -85,7 +85,7 @@ export function HomeSection() {
                 </a>
                 ,&nbsp;
                 <a
-                  className="link-info link"
+                  className="link link-info"
                   href="https://scholar.google.com/citations?user=YxRB1PAAAAAJ&hl=en&authuser=2"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -94,7 +94,7 @@ export function HomeSection() {
                 </a>
                 ,{' '}
                 <a
-                  className="link-info link"
+                  className="link link-info"
                   href="https://www.linkedin.com/in/seyed-alireza-fatemi-jahromi"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -103,7 +103,7 @@ export function HomeSection() {
                 </a>
                 ,{' '}
                 <a
-                  className="link-info link"
+                  className="link link-info"
                   href="/SeyedAlirezaFatemiJahromi.pdf"
                   target="_blank"
                   rel="noreferrer"
@@ -179,7 +179,7 @@ export function HomeSection() {
                 {colValues[index].map((val, index) => (
                   <div
                     key={index}
-                    className="badge-ghost badge badge-lg m-2 p-4"
+                    className="badge badge-ghost badge-lg m-2 p-4"
                   >
                     {val}
                   </div>

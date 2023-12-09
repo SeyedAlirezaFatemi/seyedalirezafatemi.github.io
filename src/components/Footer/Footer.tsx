@@ -67,7 +67,7 @@ export function Footer() {
           href="https://dribbble.com/shots/7896171-Alone-In-The-Dark"
           target="_blank"
           rel="noopener noreferrer"
-          className="link-info link"
+          className="link link-info"
         >
           source
         </a>
