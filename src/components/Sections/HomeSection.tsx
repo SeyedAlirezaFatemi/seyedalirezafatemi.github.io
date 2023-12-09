@@ -2,52 +2,66 @@ import Photo from '@/assets/avatar.jpg';
 import { SectionHeader } from '@/components/Typography/Headers';
 import Image from 'next/image';
 
-const languages = [
-  'C/C++',
-  'C#',
-  'Python',
-  'JavaScript',
-  'TypeScript',
-  'Java',
-  'Kotlin',
+const skills = [
+  {
+    title: 'Programming Languages',
+    items: [
+      'C/C++',
+      'C#',
+      'Python',
+      'JavaScript',
+      'TypeScript',
+      'Java',
+      'Kotlin',
+    ],
+  },
+  {
+    title: 'Game Engines',
+    items: ['Unity', 'Unreal Engine'],
+  },
+  {
+    title: '3D Modeling',
+    items: ['Blender', 'Fusion 360', 'Reality Capture'],
+  },
+  {
+    title: 'Machine Learning',
+    items: [
+      'PyTorch',
+      'TensorFlow',
+      'Keras',
+      'Scikit-learn',
+      'pandas',
+      'NumPy',
+    ],
+  },
+  {
+    title: 'Frontend',
+    items: [
+      'React',
+      'React Native',
+      'Next.js',
+      'Tailwind CSS',
+      'Native Android',
+    ],
+  },
+  {
+    title: 'Backend',
+    items: [
+      'gRPC',
+      'REST',
+      'GraphQL',
+      'Django',
+      'Flask',
+      'Kafka',
+      'OpenSearch',
+      'Docker',
+      'AWS',
+      'MongoDB',
+      'SQL',
+      'DynamoDB',
+    ],
+  },
 ];
-
-const modeling = ['Blender', 'Fusion 360', 'Reality Capture'];
-
-const engines = ['Unity', 'Unreal Engine'];
-
-const ml = [
-  'PyTorch',
-  'TensorFlow',
-  'Keras',
-  'Scikit-learn',
-  'pandas',
-  'NumPy',
-];
-
-const web = [
-  'React',
-  'Next.js',
-  'Tailwind CSS',
-  'Node.js',
-  'Express.js',
-  'MongoDB',
-  'SQL',
-  'GraphQL',
-  'Django',
-  'Flask',
-  'Docker',
-  'AWS',
-];
-
-const colNames = [
-  'Programming Languages',
-  'Game Engines',
-  '3D Modeling',
-  'Machine Learning',
-  'Web',
-];
-const colValues = [languages, engines, modeling, ml, web];
 
 export function HomeSection() {
   return (
@@ -119,12 +133,13 @@ export function HomeSection() {
       <SectionHeader className="pb-2 text-center">Interests</SectionHeader>
       <ul className="list-disc px-8 [&>li]:mb-0.5">
         <li>Game Design & Development & Graphics Programming</li>
-        <li>3D Modeling & Printing</li>
-        <li>Data Science & Visualization</li>
+        <li>Machine Learning & Generative AI & Visual Computing</li>
+        <li>Augmented & Virtual Reality</li>
         <li>Software & Web Development</li>
+        <li>Photogrammetry & 3D Modeling & Printing</li>
         <li>A lot of other things I haven&apos;t discovered yet!</li>
       </ul>
-      <div className="divider"></div>
+      {/* <div className="divider"></div>
       <SectionHeader className="pb-2 text-center">
         Research Interests
       </SectionHeader>
@@ -133,7 +148,7 @@ export function HomeSection() {
         <li>Machine Learning & Deep Learning</li>
         <li>Geometry Processing & Geometric Deep Learning</li>
         <li>A lot of other things I haven&apos;t discovered yet!</li>
-      </ul>
+      </ul> */}
       <div className="divider"></div>
       <SectionHeader className="pb-2 text-center">Education</SectionHeader>
       <ul className="list-disc px-8 [&>li]:mb-0.5">
@@ -141,7 +156,7 @@ export function HomeSection() {
           <span className="block font-semibold">
             Aalto University, Espoo, Finland
           </span>
-          <span className="block text-sm text-gray-500">GPA: 4.91/5</span>
+          <span className="block text-sm text-gray-500">GPA: 4.7/5</span>
           <span className="block">
             Master of Science in Computer Science (Big Data and Large-Scale
             Computing)
@@ -150,7 +165,7 @@ export function HomeSection() {
             Minor in Game Design and Development and Math&Arts
           </span>
           <span className="block text-sm text-gray-500">
-            Aug. 2021 - Expected Aug. 2024
+            Aug. 2021 - Expected Dec. 2024
           </span>
         </li>
         <li>
@@ -168,27 +183,20 @@ export function HomeSection() {
       </ul>
       <div className="divider"></div>
       <SectionHeader className="pb-2 text-center">Skills</SectionHeader>
-      <table>
-        <tbody>
-          {colNames.map((colName, index) => (
-            <tr key={index}>
-              <td className="w-fit">
-                <span className="mr-4 inline-block">{colName}</span>
-              </td>
-              <td>
-                {colValues[index].map((val, index) => (
-                  <div
-                    key={index}
-                    className="badge badge-ghost badge-lg m-2 p-4"
-                  >
-                    {val}
-                  </div>
-                ))}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <section>
+        {skills.map((it) => (
+          <div className="pb-2 pt-4 text-center md:text-left" key={it.title}>
+            <p className="text-lg font-bold">{it.title}</p>
+            <ul>
+              {it.items.map((skill) => (
+                <li className="badge badge-ghost badge-lg m-2 p-4" key={skill}>
+                  {skill}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </section>
     </div>
   );
 }
