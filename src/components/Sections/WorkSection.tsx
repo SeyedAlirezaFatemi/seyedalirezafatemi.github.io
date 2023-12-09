@@ -72,8 +72,7 @@ function WorkItem({
       <h4 className="pt-1 text-sm font-medium">{title}</h4>
       <span className="text-sm text-zinc-500">{date}</span>
       <ReactMarkdown
-        remarkPlugins={[rehypeExternalLinks]}
-        rehypePlugins={[rehypeRaw]}
+        rehypePlugins={[rehypeRaw, rehypeExternalLinks]}
         className="prose max-w-none pt-1 text-justify leading-tight xl:prose-lg 2xl:prose-xl"
       >
         {description}

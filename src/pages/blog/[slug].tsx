@@ -57,9 +57,8 @@ export default function BlogPostPage({ blogPost }: Props) {
         <div className="my-2 h-1 w-full rounded bg-gray-500 opacity-50" />
       </div>
       <ReactMarkdown
-        remarkPlugins={[rehypeExternalLinks]}
+        rehypePlugins={[rehypeRaw, rehypeExternalLinks]}
         className="prose max-w-none text-justify leading-tight xl:prose-lg 2xl:prose-xl"
-        rehypePlugins={[rehypeRaw]}
       >
         {blogPost.content as string}
       </ReactMarkdown>

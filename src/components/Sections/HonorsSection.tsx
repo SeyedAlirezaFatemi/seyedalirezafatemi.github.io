@@ -23,8 +23,7 @@ export default function HonorsSection({ honors }: { honors: Honor[] }) {
         <div key={honor.id} className="py-4 first:pt-0 last:pb-0">
           <HonorIcon />
           <ReactMarkdown
-            rehypePlugins={[rehypeExternalLinks]}
-            remarkPlugins={[rehypeRaw]}
+            rehypePlugins={[rehypeRaw, rehypeExternalLinks]}
             className="prose max-w-none text-justify leading-tight xl:prose-lg 2xl:prose-xl"
           >
             {honor.description}

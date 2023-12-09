@@ -58,9 +58,10 @@ const getAllExperiences = async () => {
 
   const allExperiences = experiences.results as NotionExperienceResponse[];
   for (const experience of allExperiences) {
+    // convert to markdown
     const mdblocks = await n2m.pageToMarkdown(experience.id);
-    const mdString = n2m.toMarkdownString(mdblocks);
-    experience.description = mdString;
+    const mdStringObject = n2m.toMarkdownString(mdblocks);
+    experience.description = mdStringObject.parent;
   }
 
   return allExperiences.map((experience) => ({

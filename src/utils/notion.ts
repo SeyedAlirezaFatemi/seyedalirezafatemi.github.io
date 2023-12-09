@@ -47,7 +47,7 @@ export async function getBlogPost(slug: string): Promise<BlogPost> {
 
   const pageMarkdown = await n2m.pageToMarkdown(page.id);
 
-  const content = n2m.toMarkdownString(pageMarkdown);
+  const content = n2m.toMarkdownString(pageMarkdown).parent;
 
   return {
     title: page.properties.title.title[0].text.content,

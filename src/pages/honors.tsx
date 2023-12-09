@@ -50,8 +50,8 @@ const getAllHonors = async () => {
   const allHonors = honors.results as NotionHonorResponse[];
   for (const honor of allHonors) {
     const mdblocks = await n2m.pageToMarkdown(honor.id);
-    const mdString = n2m.toMarkdownString(mdblocks);
-    honor.description = mdString;
+    const mdStringObject = n2m.toMarkdownString(mdblocks);
+    honor.description = mdStringObject.parent;
   }
 
   return allHonors.map((honor) => ({
