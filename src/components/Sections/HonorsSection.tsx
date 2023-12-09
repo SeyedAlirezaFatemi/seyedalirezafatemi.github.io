@@ -34,7 +34,7 @@ export default function HonorsSection({ honors }: { honors: Honor[] }) {
 }
 
 export function HonorIcon() {
-  const { theme, setTheme } = useTheme();
+  const { theme } = useTheme();
   const isDark = theme === 'dark';
   return (
     <Image

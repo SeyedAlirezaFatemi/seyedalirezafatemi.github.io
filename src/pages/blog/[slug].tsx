@@ -12,7 +12,7 @@ interface Props {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const blogPosts = await getBlogPosts();
-  const paths = blogPosts.map((post: any) => ({ params: { slug: post.slug } }));
+  const paths = blogPosts.map((post) => ({ params: { slug: post.slug } }));
   return { paths, fallback: false };
 };
 

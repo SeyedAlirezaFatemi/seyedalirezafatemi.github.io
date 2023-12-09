@@ -116,7 +116,7 @@ export interface Description {
 
 export interface RichText {
   annotations: Annotations;
-  href: any;
+  href: string;
   plain_text: string;
   text: Text;
   type: string;
@@ -124,7 +124,7 @@ export interface RichText {
 
 export interface Text {
   content: string;
-  link: any;
+  link: string;
 }
 
 export interface Annotations {
@@ -173,7 +173,7 @@ export interface Title {
 
 export interface Title2 {
   annotations: Annotations2;
-  href: any;
+  href: string;
   plain_text: string;
   text: Text2;
   type: string;
@@ -181,7 +181,7 @@ export interface Title2 {
 
 export interface Text2 {
   content: string;
-  link: any;
+  link: string;
 }
 
 export interface Annotations2 {

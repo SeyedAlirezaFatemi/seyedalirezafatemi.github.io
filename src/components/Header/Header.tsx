@@ -1,4 +1,3 @@
-import type { MouseEventHandler } from 'react';
 import { useTheme } from 'next-themes';
 import { twMerge } from 'tailwind-merge';
 import Image from 'next/image';
