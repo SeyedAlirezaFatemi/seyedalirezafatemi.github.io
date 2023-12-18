@@ -5,6 +5,7 @@ import type {
   PageObjectResponse,
   RichTextItemResponse,
 } from '@notionhq/client/build/src/api-endpoints';
+import type { Metadata } from 'next';
 
 type NotionHonorResponse = PageObjectResponse & {
   description: string;
@@ -52,10 +53,10 @@ const getStaticProps = async () => {
   };
 };
 
-export const metadata = {
-  title: 'Honors | Seyed Alireza Fatemi Jahromi',
-  description: 'Seyed Alireza Fatemi Jahromi Personal Website',
+export const metadata: Metadata = {
+  title: 'Honors',
 };
+
 export default async function HonorsPage() {
   const { honors } = await getStaticProps();
 

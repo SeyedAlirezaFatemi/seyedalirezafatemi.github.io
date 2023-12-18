@@ -1,15 +1,18 @@
 import React from 'react';
 import rehypeExternalLinks from 'rehype-external-links';
 import ReactMarkdown from 'react-markdown';
-import type { NextPage } from 'next';
+import type { Metadata, NextPage } from 'next';
 import rehypeRaw from 'rehype-raw';
 import { getBlogPost } from '@/utils/notion';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
-type PageParams = { params: { slug: string } };
+type Props = {
+  params: { slug: string };
+  searchParams: Record<string, unknown>;
+};
 
-const getStaticProps = async ({ params }: PageParams) => {
+const getStaticProps = async ({ params }: Props) => {
   const blogPost = await getBlogPost(params?.slug);
 
   return {
@@ -17,10 +20,34 @@ const getStaticProps = async ({ params }: PageParams) => {
   };
 };
 
-const BlogPostPage: NextPage<PageParams> = async (params) => {
-  if (!params) return notFound();
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const blogPost = await getBlogPost(params?.slug);
+  return {
+    title: blogPost.title,
+    description: blogPost.description,
+    openGraph: {
+      title: blogPost.title,
+      description: blogPost.description,
+      ...(blogPost.cover
+        ? {
+            images: [
+              {
+                url: blogPost.cover,
+                width: 600,
+                height: 400,
+                alt: blogPost.title,
+              },
+            ],
+          }
+        : {}),
+    },
+  };
+}
 
-  const { blogPost } = await getStaticProps(params);
+const BlogPostPage: NextPage<Props> = async (props) => {
+  if (!props) return notFound();
+
+  const { blogPost } = await getStaticProps(props);
 
   if (!blogPost) {
     return notFound();

@@ -2,10 +2,15 @@ import type { BlogPost } from '@/features/blog/@types';
 import { getBlogPosts } from '@/utils/notion';
 import Image from 'next/image';
 import Link from 'next/link';
+import type { Metadata } from 'next';
 
 const getStaticProps = async () => {
   const blogPosts = (await getBlogPosts()) as BlogPost[];
   return { blogPosts };
+};
+
+export const metadata: Metadata = {
+  title: 'Blog',
 };
 
 export default async function BlogPosts() {
