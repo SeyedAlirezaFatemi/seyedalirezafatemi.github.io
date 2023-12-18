@@ -7,6 +7,9 @@ import { Providers } from '@/providers';
 export type MainLayoutProps = {
   children: React.ReactNode;
 };
+
+export const revalidate = 3600;
+
 const MainLayout = ({ children }: MainLayoutProps) => {
   return (
     <html lang="en">
