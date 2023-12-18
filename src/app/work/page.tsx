@@ -7,23 +7,6 @@ import type {
 } from '@notionhq/client/build/src/api-endpoints';
 import Head from 'next/head';
 
-export default function Work({ experiences }: { experiences: Experience[] }) {
-  return (
-    <>
-      <Head>
-        <title>Work | Seyed Alireza Fatemi Jahromi</title>
-        <meta
-          name="description"
-          content="Seyed Alireza Fatemi Jahromi Personal Website"
-        />
-      </Head>
-      <main>
-        <WorkSection experiences={experiences} />
-      </main>
-    </>
-  );
-}
-
 type NotionExperienceResponse = PageObjectResponse & {
   description: string;
   properties: {
@@ -75,13 +58,28 @@ const getAllExperiences = async () => {
   }));
 };
 
-export const getStaticProps = async () => {
-  const data = await getAllExperiences();
+const getStaticProps = async () => {
+  const data = (await getAllExperiences()) as Experience[];
 
   return {
-    props: {
-      experiences: data,
-    },
-    revalidate: 60,
+    experiences: data,
   };
 };
+
+export default async function WorkPage() {
+  const { experiences } = await getStaticProps();
+  return (
+    <>
+      <Head>
+        <title>Work | Seyed Alireza Fatemi Jahromi</title>
+        <meta
+          name="description"
+          content="Seyed Alireza Fatemi Jahromi Personal Website"
+        />
+      </Head>
+      <main>
+        <WorkSection experiences={experiences} />
+      </main>
+    </>
+  );
+}

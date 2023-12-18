@@ -1,19 +1,15 @@
-import type { GetStaticProps } from 'next';
 import type { BlogPost } from '@/features/blog/@types';
 import { getBlogPosts } from '@/utils/notion';
 import Image from 'next/image';
 import Link from 'next/link';
 
-interface Props {
-  blogPosts: BlogPost[];
-}
-
-export const getStaticProps: GetStaticProps<Props> = async () => {
-  const blogPosts = await getBlogPosts();
-  return { props: { blogPosts }, revalidate: 60 };
+const getStaticProps = async () => {
+  const blogPosts = (await getBlogPosts()) as BlogPost[];
+  return { blogPosts };
 };
 
-export default function BlogPosts({ blogPosts }: Props) {
+export default async function BlogPosts() {
+  const { blogPosts } = await getStaticProps();
   return (
     <div className="container mx-auto">
       <h1 className="mb-4 text-3xl font-bold">Blog Posts</h1>

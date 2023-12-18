@@ -1,34 +1,31 @@
 import React from 'react';
 import rehypeExternalLinks from 'rehype-external-links';
 import ReactMarkdown from 'react-markdown';
-import type { GetStaticPaths, GetStaticProps } from 'next';
+import type { NextPage } from 'next';
 import rehypeRaw from 'rehype-raw';
-import type { BlogPost } from '@/features/blog/@types';
-import { getBlogPost, getBlogPosts } from '@/utils/notion';
+import { getBlogPost } from '@/utils/notion';
 import Image from 'next/image';
+import { notFound } from 'next/navigation';
 
-interface Props {
-  blogPost: BlogPost;
-}
+type PageParams = { params: { slug: string } };
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const blogPosts = await getBlogPosts();
-  const paths = blogPosts.map((post) => ({ params: { slug: post.slug } }));
-  return { paths, fallback: false };
-};
-
-export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
-  const blogPost = await getBlogPost(params?.slug as string);
+const getStaticProps = async ({ params }: PageParams) => {
+  const blogPost = await getBlogPost(params?.slug);
 
   return {
-    props: {
-      blogPost,
-    },
-    revalidate: 60,
+    blogPost,
   };
 };
 
-export default function BlogPostPage({ blogPost }: Props) {
+const BlogPostPage: NextPage<PageParams> = async (params) => {
+  if (!params) return notFound();
+
+  const { blogPost } = await getStaticProps(params);
+
+  if (!blogPost) {
+    return notFound();
+  }
+
   return (
     <article className="container mx-auto">
       {blogPost.cover && (
@@ -79,4 +76,6 @@ export default function BlogPostPage({ blogPost }: Props) {
       </div>
     </article>
   );
-}
+};
+
+export default BlogPostPage;
