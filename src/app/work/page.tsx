@@ -5,7 +5,6 @@ import type {
   PageObjectResponse,
   RichTextItemResponse,
 } from '@notionhq/client/build/src/api-endpoints';
-import Head from 'next/head';
 
 type NotionExperienceResponse = PageObjectResponse & {
   description: string;
@@ -66,20 +65,16 @@ const getStaticProps = async () => {
   };
 };
 
+export const metadata = {
+  title: 'Work | Seyed Alireza Fatemi Jahromi',
+  description: 'Seyed Alireza Fatemi Jahromi Personal Website',
+};
+
 export default async function WorkPage() {
   const { experiences } = await getStaticProps();
   return (
-    <>
-      <Head>
-        <title>Work | Seyed Alireza Fatemi Jahromi</title>
-        <meta
-          name="description"
-          content="Seyed Alireza Fatemi Jahromi Personal Website"
-        />
-      </Head>
-      <main>
-        <WorkSection experiences={experiences} />
-      </main>
-    </>
+    <main>
+      <WorkSection experiences={experiences} />
+    </main>
   );
 }
