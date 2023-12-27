@@ -1,28 +1,11 @@
 import { n2m, notionClient } from '@/components/Notion/client';
 import type { Honor } from '@/components/Sections/HonorsSection';
 import HonorsSection from '@/components/Sections/HonorsSection';
-import Head from 'next/head';
 import type {
   PageObjectResponse,
   RichTextItemResponse,
 } from '@notionhq/client/build/src/api-endpoints';
-
-export default function Honors({ honors }: { honors: Honor[] }) {
-  return (
-    <>
-      <Head>
-        <title>Honors | Seyed Alireza Fatemi Jahromi</title>
-        <meta
-          name="description"
-          content="Seyed Alireza Fatemi Jahromi Personal Website"
-        />
-      </Head>
-      <main>
-        <HonorsSection honors={honors} />
-      </main>
-    </>
-  );
-}
+import type { Metadata } from 'next';
 
 type NotionHonorResponse = PageObjectResponse & {
   description: string;
@@ -62,13 +45,20 @@ const getAllHonors = async () => {
   }));
 };
 
-export const getStaticProps = async () => {
-  const data = await getAllHonors();
+const getStaticProps = async () => {
+  const data = (await getAllHonors()) as Honor[];
 
   return {
-    props: {
-      honors: data,
-    },
-    revalidate: 60,
+    honors: data,
   };
 };
+
+export const metadata: Metadata = {
+  title: 'Honors',
+};
+
+export default async function HonorsPage() {
+  const { honors } = await getStaticProps();
+
+  return <HonorsSection honors={honors} />;
+}

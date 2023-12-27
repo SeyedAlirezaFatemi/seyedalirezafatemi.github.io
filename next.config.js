@@ -2,7 +2,12 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    unoptimized: true,
+    remotePatterns: [
+      {
+        hostname: '*.amazonaws.com',
+        protocol: 'https',
+      },
+    ],
   },
 };
 

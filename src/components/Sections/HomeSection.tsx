@@ -73,7 +73,11 @@ export function HomeSection() {
         <div className="flex flex-row flex-wrap items-center justify-center justify-items-center gap-12">
           <div className="avatar flex-initial">
             <div className="avatar w-48 rounded-full">
-              <Image src={Photo} alt="Photo of Alireza Fatemi" />
+              <Image
+                src={Photo}
+                placeholder="blur"
+                alt="Photo of Alireza Fatemi"
+              />
             </div>
           </div>
           <div className="flex-1 leading-6">

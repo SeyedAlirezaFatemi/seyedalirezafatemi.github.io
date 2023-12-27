@@ -1,34 +1,58 @@
 import React from 'react';
 import rehypeExternalLinks from 'rehype-external-links';
 import ReactMarkdown from 'react-markdown';
-import type { GetStaticPaths, GetStaticProps } from 'next';
+import type { Metadata, NextPage } from 'next';
 import rehypeRaw from 'rehype-raw';
-import type { BlogPost } from '@/features/blog/@types';
-import { getBlogPost, getBlogPosts } from '@/utils/notion';
+import { getBlogPost } from '@/utils/notion';
 import Image from 'next/image';
+import { notFound } from 'next/navigation';
 
-interface Props {
-  blogPost: BlogPost;
-}
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  const blogPosts = await getBlogPosts();
-  const paths = blogPosts.map((post) => ({ params: { slug: post.slug } }));
-  return { paths, fallback: false };
+type Props = {
+  params: { slug: string };
+  searchParams: Record<string, unknown>;
 };
 
-export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
-  const blogPost = await getBlogPost(params?.slug as string);
+const getStaticProps = async ({ params }: Props) => {
+  const blogPost = await getBlogPost(params?.slug);
 
   return {
-    props: {
-      blogPost,
-    },
-    revalidate: 60,
+    blogPost,
   };
 };
 
-export default function BlogPostPage({ blogPost }: Props) {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const blogPost = await getBlogPost(params?.slug);
+  return {
+    title: blogPost.title,
+    description: blogPost.description,
+    openGraph: {
+      title: blogPost.title,
+      description: blogPost.description,
+      ...(blogPost.cover
+        ? {
+            images: [
+              {
+                url: blogPost.cover,
+                width: 600,
+                height: 400,
+                alt: blogPost.title,
+              },
+            ],
+          }
+        : {}),
+    },
+  };
+}
+
+const BlogPostPage: NextPage<Props> = async (props) => {
+  if (!props) return notFound();
+
+  const { blogPost } = await getStaticProps(props);
+
+  if (!blogPost) {
+    return notFound();
+  }
+
   return (
     <article className="container mx-auto">
       {blogPost.cover && (
@@ -79,4 +103,6 @@ export default function BlogPostPage({ blogPost }: Props) {
       </div>
     </article>
   );
-}
+};
+
+export default BlogPostPage;
