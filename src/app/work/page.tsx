@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { n2m, notionClient } from '@/components/Notion/client';
 import type { Experience } from '@/components/Sections/WorkSection';
 import WorkSection from '@/components/Sections/WorkSection';
@@ -5,7 +6,6 @@ import type {
   PageObjectResponse,
   RichTextItemResponse,
 } from '@notionhq/client/build/src/api-endpoints';
-import type { Metadata } from 'next';
 
 type NotionExperienceResponse = PageObjectResponse & {
   description: string;

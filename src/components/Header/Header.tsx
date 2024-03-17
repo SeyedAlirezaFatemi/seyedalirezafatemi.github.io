@@ -1,6 +1,6 @@
 import React from 'react';
-import { Torch } from '@/components/Header/components/Torch';
 import { HeaderItem } from '@/components/Header/components/HeaderItem';
+import { Torch } from '@/components/Header/components/Torch';
 
 export default function Header() {
   return (

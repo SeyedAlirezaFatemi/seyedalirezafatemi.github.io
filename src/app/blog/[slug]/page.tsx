@@ -1,7 +1,7 @@
 import React from 'react';
-import rehypeExternalLinks from 'rehype-external-links';
 import ReactMarkdown from 'react-markdown';
 import type { Metadata, NextPage } from 'next';
+import rehypeExternalLinks from 'rehype-external-links';
 import rehypeRaw from 'rehype-raw';
 import { getBlogPost } from '@/utils/notion';
 import Image from 'next/image';

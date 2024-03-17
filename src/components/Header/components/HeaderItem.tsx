@@ -1,8 +1,9 @@
 'use client';
-import { usePathname } from 'next/navigation';
+
+import React from 'react';
 import { twMerge } from 'tailwind-merge';
 import Link from 'next/link';
-import React from 'react';
+import { usePathname } from 'next/navigation';
 
 export function HeaderItem({ text, path }: { path: string; text: string }) {
   const pathname = usePathname();
