@@ -1,67 +1,8 @@
 import Photo from '@/assets/avatar.jpg';
 import { SectionHeader } from '@/components/Typography/Headers';
+import { skills } from '@/constants/skills';
 import Image from 'next/image';
-
-const skills = [
-  {
-    title: 'Programming Languages',
-    items: [
-      'C/C++',
-      'C#',
-      'Python',
-      'JavaScript',
-      'TypeScript',
-      'Java',
-      'Kotlin',
-    ],
-  },
-  {
-    title: 'Game Engines',
-    items: ['Unity', 'Unreal Engine'],
-  },
-  {
-    title: '3D Modeling',
-    items: ['Blender', 'Fusion 360', 'Reality Capture'],
-  },
-  {
-    title: 'Machine Learning',
-    items: [
-      'PyTorch',
-      'TensorFlow',
-      'Keras',
-      'Scikit-learn',
-      'pandas',
-      'NumPy',
-    ],
-  },
-  {
-    title: 'Frontend',
-    items: [
-      'React',
-      'React Native',
-      'Next.js',
-      'Tailwind CSS',
-      'Native Android',
-    ],
-  },
-  {
-    title: 'Backend',
-    items: [
-      'gRPC',
-      'REST',
-      'GraphQL',
-      'Django',
-      'Flask',
-      'Kafka',
-      'OpenSearch',
-      'Docker',
-      'AWS',
-      'MongoDB',
-      'SQL',
-      'DynamoDB',
-    ],
-  },
-];
+import Link from 'next/link';
 
 export function HomeSection() {
   return (
@@ -193,8 +134,17 @@ export function HomeSection() {
             <p className="text-lg font-bold">{it.title}</p>
             <ul>
               {it.items.map((skill) => (
-                <li className="badge badge-ghost badge-lg m-2 p-4" key={skill}>
-                  {skill}
+                <li
+                  className="badge badge-ghost badge-lg m-2 cursor-pointer p-4 hover:bg-gray-400 hover:shadow dark:hover:bg-gray-600"
+                  key={skill.name}
+                >
+                  <Link
+                    href={skill.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {skill.name}
+                  </Link>
                 </li>
               ))}
             </ul>
