@@ -6,10 +6,10 @@ import siteConfig from 'site.config';
 
 const Hotjar = () => {
   useEffect(() => {
-    hotjar.initialize(
-      Number(siteConfig.HOTJAR_ID),
-      Number(siteConfig.HOTJAR_SNIPPET_VERSION)
-    );
+    hotjar.initialize({
+      hjid: Number(siteConfig.HOTJAR_ID),
+      hjsv: Number(siteConfig.HOTJAR_SNIPPET_VERSION),
+    });
   }, []);
   return null;
 };

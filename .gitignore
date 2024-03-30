@@ -52,3 +52,6 @@ storybook-static
 # cypress videos
 cypress/videos
 cypress/screenshots
+
+# Sentry Config File
+.sentryclirc
