@@ -89,8 +89,8 @@ export function HomeSection() {
                 Pursuing a minor in Game Design and Development and Math&Arts
               </span>
               <span className="my-2 inline-block text-gray-500">
-                Passionate about Game Development, Computer Graphics, Machine
-                Learning, and Extended Reality
+                Passionate about Game Development, Visual Computing, Machine
+                Learning, Computer Graphics, and Extended Reality
               </span>
               <span className="inline-block">
                 <a
@@ -139,8 +139,8 @@ export function HomeSection() {
         <li>Game Design & Development & Graphics Programming</li>
         <li>Machine Learning & Generative AI & Visual Computing</li>
         <li>Augmented & Virtual Reality</li>
-        <li>Software & Web Development</li>
         <li>Photogrammetry & 3D Modeling & Printing</li>
+        <li>Software & Web Development</li>
         <li>A lot of other things I haven&apos;t discovered yet!</li>
       </ul>
       {/* <div className="divider"></div>

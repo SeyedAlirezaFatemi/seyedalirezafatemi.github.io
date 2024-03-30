@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { n2m, notionClient } from '@/components/Notion/client';
 import type { Honor } from '@/components/Sections/HonorsSection';
 import HonorsSection from '@/components/Sections/HonorsSection';
@@ -5,7 +6,6 @@ import type {
   PageObjectResponse,
   RichTextItemResponse,
 } from '@notionhq/client/build/src/api-endpoints';
-import type { Metadata } from 'next';
 
 type NotionHonorResponse = PageObjectResponse & {
   description: string;

@@ -46,7 +46,7 @@ export function Footer() {
         <a href="https://twitter.com/alir3zafa" target="_blank">
           <FaTwitter size={24} />
         </a>
-        <a href="https://t.me/OriginalAngel" target="_blank">
+        <a href="https://t.me/TheDivineHeir" target="_blank">
           <FaTelegramPlane size={24} />
         </a>
         <a href="mailto:seyedalirezafatemijahromi@gmail.com" target="_blank">
