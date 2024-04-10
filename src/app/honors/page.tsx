@@ -60,5 +60,9 @@ export const metadata: Metadata = {
 export default async function HonorsPage() {
   const { honors } = await getStaticProps();
 
-  return <HonorsSection honors={honors} />;
+  return (
+    <main>
+      <HonorsSection honors={honors} />
+    </main>
+  );
 }
