@@ -1,10 +1,27 @@
+import ReactMarkdown from 'react-markdown';
+import rehypeExternalLinks from 'rehype-external-links';
+import rehypeRaw from 'rehype-raw';
 import Photo from '@/assets/avatar.jpg';
 import { SectionHeader } from '@/components/Typography/Headers';
 import { skills } from '@/constants/skills';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export function HomeSection() {
+export type EducationItem = {
+  date: string;
+  description: string;
+  gpa: string;
+  id: string;
+  major: string;
+  minor: string;
+  name: string;
+};
+
+export function HomeSection({
+  educationItems,
+}: {
+  educationItems: EducationItem[];
+}) {
   return (
     <div>
       <div className="px-16">
@@ -96,35 +113,26 @@ export function HomeSection() {
       </ul> */}
       <div className="divider"></div>
       <SectionHeader className="pb-2 text-center">Education</SectionHeader>
-      <ul className="list-disc px-8 [&>li]:mb-0.5">
-        <li>
-          <span className="block font-semibold">
-            Aalto University, Espoo, Finland
-          </span>
-          <span className="block text-sm text-gray-500">GPA: 4.7/5</span>
-          <span className="block">
-            Master of Science in Computer Science (Big Data and Large-Scale
-            Computing)
-          </span>
-          <span className="block">
-            Minor in Game Design and Development and Math&Arts
-          </span>
-          <span className="block text-sm text-gray-500">
-            Aug. 2021 - Expected Dec. 2024
-          </span>
-        </li>
-        <li>
-          <span className="block font-semibold">
-            Sharif University of Technology, Tehran, Iran
-          </span>
-          <span className="block text-sm text-gray-500">GPA: 18.6/20</span>
-          <span className="block">
-            Bachelor of Science in Computer Engineering
-          </span>
-          <span className="block text-sm text-gray-500">
-            Sep. 2016 - May 2021
-          </span>
-        </li>
+      <ul className="list-disc px-8 [&>li]:mb-6">
+        {educationItems.map((educationItem) => (
+          <li key={educationItem.id}>
+            <span className="block font-semibold">{educationItem.name}</span>
+            <span className="block text-sm text-gray-500">
+              GPA: {educationItem.gpa}
+            </span>
+            <span className="block">{educationItem.major}</span>
+            <span className="block">{educationItem.minor}</span>
+            <span className="block text-sm text-gray-500">
+              {educationItem.date}
+            </span>
+            <ReactMarkdown
+              rehypePlugins={[rehypeRaw, rehypeExternalLinks]}
+              className="prose max-w-none pt-1 text-justify leading-tight prose-ul:-mt-2"
+            >
+              {educationItem.description}
+            </ReactMarkdown>
+          </li>
+        ))}
       </ul>
       <div className="divider"></div>
       <SectionHeader className="pb-2 text-center">Skills</SectionHeader>
