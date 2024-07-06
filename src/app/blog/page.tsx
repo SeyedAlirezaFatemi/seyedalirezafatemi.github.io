@@ -26,7 +26,7 @@ export default async function BlogPosts() {
                 <Image
                   width={150}
                   height={150}
-                  className="mr-4 hidden rounded-md md:block"
+                  className="mr-4 rounded-md md:block"
                   src={post.cover}
                   alt={post.title}
                 />
