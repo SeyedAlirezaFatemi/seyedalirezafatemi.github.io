@@ -9,8 +9,6 @@ export function SectionHeader({
   className?: string;
 }) {
   return (
-    <h1 className={twMerge('text-2xl font-semibold uppercase', className)}>
-      {children}
-    </h1>
+    <h1 className={twMerge('text-2xl font-semibold', className)}>{children}</h1>
   );
 }

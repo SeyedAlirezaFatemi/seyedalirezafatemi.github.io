@@ -17,10 +17,19 @@ export type EducationItem = {
   name: string;
 };
 
+export type ProfessionalDevelopmentItem = {
+  date: string;
+  description: string;
+  id: string;
+  name: string;
+};
+
 export function HomeSection({
   educationItems,
+  profDevItems,
 }: {
   educationItems: EducationItem[];
+  profDevItems: ProfessionalDevelopmentItem[];
 }) {
   return (
     <div>
@@ -125,11 +134,40 @@ export function HomeSection({
             <span className="block text-sm text-gray-500">
               {educationItem.date}
             </span>
+            <div
+              tabIndex={0}
+              className="collapse collapse-arrow mt-2 border border-base-300 bg-base-200"
+            >
+              <input type="checkbox" />
+              <div className="collapse-title">Course Highlights</div>
+              <div className="collapse-content">
+                <ReactMarkdown
+                  rehypePlugins={[rehypeRaw, rehypeExternalLinks]}
+                  className="prose max-w-none pt-1 text-justify leading-tight prose-ul:-mt-2"
+                >
+                  {educationItem.description}
+                </ReactMarkdown>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+      <div className="divider"></div>
+      <SectionHeader className="pb-2 text-center">
+        Professional Development
+      </SectionHeader>
+      <ul className="list-disc px-8 [&>li]:mb-6">
+        {profDevItems.map((profDevItem) => (
+          <li key={profDevItem.id}>
+            <span className="block font-semibold">{profDevItem.name}</span>
+            <span className="block text-sm text-gray-500">
+              {profDevItem.date}
+            </span>
             <ReactMarkdown
               rehypePlugins={[rehypeRaw, rehypeExternalLinks]}
               className="prose max-w-none pt-1 text-justify leading-tight prose-ul:-mt-2"
             >
-              {educationItem.description}
+              {profDevItem.description}
             </ReactMarkdown>
           </li>
         ))}
