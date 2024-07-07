@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { SectionHeader } from '@/components/Typography/Headers';
 import type { BlogPost } from '@/features/blog/@types';
 import { getBlogPosts } from '@/utils/notion';
 import Image from 'next/image';
@@ -17,7 +18,7 @@ export default async function BlogPosts() {
   const { blogPosts } = await getStaticProps();
   return (
     <div className="container mx-auto">
-      <h1 className="mb-4 text-3xl font-bold">Blog Posts</h1>
+      <SectionHeader className="mb-4 text-center">Blog</SectionHeader>
       <ul>
         {blogPosts.map((post) => (
           <li key={post.title} className="mb-8">
