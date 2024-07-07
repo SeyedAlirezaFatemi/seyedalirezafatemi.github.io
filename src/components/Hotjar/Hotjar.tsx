@@ -7,8 +7,8 @@ import siteConfig from 'site.config';
 const Hotjar = () => {
   useEffect(() => {
     hotjar.initialize({
-      hjid: Number(siteConfig.HOTJAR_ID),
-      hjsv: Number(siteConfig.HOTJAR_SNIPPET_VERSION),
+      id: Number(siteConfig.HOTJAR_ID),
+      sv: Number(siteConfig.HOTJAR_SNIPPET_VERSION),
     });
   }, []);
   return null;
