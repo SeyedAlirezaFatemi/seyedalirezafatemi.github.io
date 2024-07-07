@@ -37,8 +37,8 @@
     "typescript": "^5.3.3"
   },
   "devDependencies": {
-    "@commitlint/cli": "^18.5.0",
-    "@commitlint/config-conventional": "^18.5.0",
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/node": "^20.11.5",
     "@types/react": "^18.2.48",
@@ -53,10 +53,10 @@
     "eslint-plugin-storybook": "^0.6.15",
     "eslint-plugin-testing-library": "^6.2.0",
     "eslint-plugin-typescript-sort-keys": "^3.1.0",
-    "husky": "^8.0.3",
-    "lint-staged": "^15.2.0",
-    "prettier": "^3.2.5",
-    "prettier-plugin-packagejson": "^2.4.9",
-    "prettier-plugin-tailwindcss": "^0.5.11"
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.7",
+    "prettier": "^3.3.2",
+    "prettier-plugin-packagejson": "^2.5.0",
+    "prettier-plugin-tailwindcss": "^0.6.5"
   }
 }
