@@ -13,7 +13,7 @@ type Props = {
 };
 
 const getStaticProps = async ({ params }: Props) => {
-  const blogPost = await getBlogPost(params?.slug);
+  const blogPost = await getBlogPost(params.slug);
 
   return {
     blogPost,
@@ -21,7 +21,7 @@ const getStaticProps = async ({ params }: Props) => {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const blogPost = await getBlogPost(params?.slug);
+  const blogPost = await getBlogPost(params.slug);
   return {
     title: blogPost.title,
     description: blogPost.description,

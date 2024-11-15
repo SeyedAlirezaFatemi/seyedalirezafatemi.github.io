@@ -1,5 +1,5 @@
 {
-  "name": "blog",
+  "name": "fatemi-website",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -19,8 +19,6 @@
     "@vercel/speed-insights": "^1.1.0",
     "autoprefixer": "^10.4.20",
     "daisyui": "^4.12.14",
-    "eslint": "^8.56.0",
-    "eslint-config-next": "^14.2.4",
     "next": "^14.2.4",
     "next-themes": "^0.4.3",
     "notion-to-md": "^3.1.1",
@@ -39,24 +37,27 @@
   "devDependencies": {
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
+    "@eslint/eslintrc": "^3.2.0",
+    "@eslint/js": "^9.15.0",
+    "@next/eslint-plugin-next": "^15.0.3",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/node": "^20.14.10",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
-    "@typescript-eslint/eslint-plugin": "^7.15.0",
-    "eslint-config-next": "^13.2.4",
+    "eslint": "^9.15.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-cypress": "^2.15.1",
-    "eslint-plugin-jest": "^27.6.3",
+    "eslint-import-resolver-typescript": "^3.6.3",
     "eslint-plugin-no-relative-import-paths": "^1.5.5",
     "eslint-plugin-prettier": "^5.2.1",
-    "eslint-plugin-storybook": "^0.6.15",
-    "eslint-plugin-testing-library": "^6.4.0",
+    "eslint-plugin-react": "^7.37.2",
+    "eslint-plugin-tailwindcss": "^3.17.5",
     "eslint-plugin-typescript-sort-keys": "^3.3.0",
+    "globals": "^15.12.0",
     "husky": "^9.1.6",
     "lint-staged": "^15.2.10",
     "prettier": "^3.3.3",
     "prettier-plugin-packagejson": "^2.5.3",
-    "prettier-plugin-tailwindcss": "^0.6.8"
+    "prettier-plugin-tailwindcss": "^0.6.8",
+    "typescript-eslint": "^8.14.0"
   }
 }
