@@ -8,19 +8,20 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
   searchParams: Record<string, unknown>;
 };
 
-const getStaticProps = async ({ params }: Props) => {
-  const blogPost = await getBlogPost(params.slug);
+const getStaticProps = async (slug: string) => {
+  const blogPost = await getBlogPost(slug);
 
   return {
     blogPost,
   };
 };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
   const blogPost = await getBlogPost(params.slug);
   return {
     title: blogPost.title,
@@ -44,10 +45,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-const BlogPostPage: NextPage<Props> = async (props) => {
+const BlogPostPage = async (props: Props) => {
+  const { slug } = await props.params;
+
   if (!props) return notFound();
 
-  const { blogPost } = await getStaticProps(props);
+  const { blogPost } = await getStaticProps(slug);
 
   if (!blogPost) {
     return notFound();
