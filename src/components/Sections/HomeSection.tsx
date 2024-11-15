@@ -33,11 +33,11 @@ export function HomeSection({
 }) {
   return (
     <div>
-      <div className="px-16">
+      <div className="px-4 lg:px-16">
         <SectionHeader className="mb-4 text-center">
           Seyed Alireza Fatemi Jahromi
         </SectionHeader>
-        <div className="flex flex-row flex-wrap items-center justify-center justify-items-center gap-12">
+        <div className="flex flex-col flex-wrap items-center justify-center justify-items-center gap-12 lg:flex-row">
           <div className="avatar flex-initial">
             <div className="avatar w-48 rounded-full">
               <Image
