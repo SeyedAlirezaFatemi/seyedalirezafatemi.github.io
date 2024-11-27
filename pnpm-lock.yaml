@@ -6,7 +6,7 @@ settings:
 
 dependencies:
   '@next/third-parties':
-    specifier: 15.0.3
+    specifier: ^15.0.3
     version: 15.0.3(next@15.0.3)(react@18.3.1)
   '@notionhq/client':
     specifier: ^2.2.15
@@ -33,7 +33,7 @@ dependencies:
     specifier: ^4.12.14
     version: 4.12.14(postcss@8.4.49)
   next:
-    specifier: 15.0.3
+    specifier: ^15.0.3
     version: 15.0.3(@babel/core@7.26.0)(@opentelemetry/api@1.9.0)(react-dom@18.3.1)(react@18.3.1)
   next-themes:
     specifier: ^0.4.3
@@ -89,7 +89,7 @@ devDependencies:
     specifier: ^9.15.0
     version: 9.15.0
   '@next/eslint-plugin-next':
-    specifier: 15.0.3
+    specifier: ^15.0.3
     version: 15.0.3
   '@trivago/prettier-plugin-sort-imports':
     specifier: ^4.3.0
