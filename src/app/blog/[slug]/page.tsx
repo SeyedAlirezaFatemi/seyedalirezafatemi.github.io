@@ -9,7 +9,7 @@ import { notFound } from 'next/navigation';
 
 type Props = {
   params: Promise<{ slug: string }>;
-  searchParams: Record<string, unknown>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 const getStaticProps = async (slug: string) => {
