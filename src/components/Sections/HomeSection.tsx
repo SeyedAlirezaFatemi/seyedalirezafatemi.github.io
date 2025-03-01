@@ -37,7 +37,7 @@ export function HomeSection({
         <SectionHeader className="mb-4 text-center">
           Seyed Alireza Fatemi Jahromi
         </SectionHeader>
-        <div className="flex flex-col flex-wrap items-center justify-center justify-items-center gap-12 lg:flex-row">
+        <div className="flex flex-col flex-wrap place-items-center justify-center gap-12 lg:flex-row">
           <div className="avatar flex-initial">
             <div className="avatar w-48 rounded-full">
               <Image
