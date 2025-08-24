@@ -50,10 +50,10 @@ export function HomeSection({
           <div className="flex-1 leading-6">
             <p>
               <span className="inline-block">
-                Master&apos;s Student in Computer Science at Aalto University
+                Software & Machine Learning Engineer
               </span>
               <span className="inline-block">
-                Pursuing a minor in Game Design and Development and Math&Arts
+                Game Designer & Developer
               </span>
               <span className="my-2 inline-block text-gray-500">
                 Passionate about Game Development, Visual Computing, Machine
