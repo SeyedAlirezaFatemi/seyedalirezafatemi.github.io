@@ -52,8 +52,8 @@ export function HomeSection({
               <span className="inline-block">
                 Software & Machine Learning Engineer
               </span>
-              <span className="inline-block">
-                Game Designer & Developer
+              <span className="block">
+              Game Designer & Developer
               </span>
               <span className="my-2 inline-block text-gray-500">
                 Passionate about Game Development, Visual Computing, Machine
