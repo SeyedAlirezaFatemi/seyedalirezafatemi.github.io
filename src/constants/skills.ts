@@ -35,6 +35,10 @@ export const skills: SkillSet[] = [
         name: 'Kotlin',
         href: 'https://kotlinlang.org/',
       },
+      {
+        name: 'Luau',
+        href: 'https://luau.org/',
+      }
     ],
   },
   {
