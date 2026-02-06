@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
-import type { Metadata, NextPage } from 'next';
+import type { Metadata } from 'next';
 import rehypeExternalLinks from 'rehype-external-links';
 import rehypeRaw from 'rehype-raw';
 import { getBlogPost } from '@/utils/notion';
@@ -8,12 +8,11 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
 type Props = {
-  params: { slug: string };
-  searchParams: Record<string, unknown>;
+  params: Promise<{ slug: string }>;
 };
 
-const getStaticProps = async ({ params }: Props) => {
-  const blogPost = await getBlogPost(params?.slug);
+const fetchBlogPostData = async (slug: string) => {
+  const blogPost = await getBlogPost(slug);
 
   return {
     blogPost,
@@ -21,7 +20,8 @@ const getStaticProps = async ({ params }: Props) => {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const blogPost = await getBlogPost(params?.slug);
+  const { slug } = await params;
+  const blogPost = await getBlogPost(slug);
   return {
     title: blogPost.title,
     description: blogPost.description,
@@ -44,10 +44,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-const BlogPostPage: NextPage<Props> = async (props) => {
-  if (!props) return notFound();
-
-  const { blogPost } = await getStaticProps(props);
+export default async function BlogPostPage({ params }: Props) {
+  const { slug } = await params;
+  const { blogPost } = await fetchBlogPostData(slug);
 
   if (!blogPost) {
     return notFound();
@@ -62,16 +61,12 @@ const BlogPostPage: NextPage<Props> = async (props) => {
           src={blogPost.cover}
           alt={blogPost.title}
           className="w-full rounded"
+          sizes="(max-width: 896px) 100vw, 896px"
         />
       )}
       <div className="mb-4">
-        <h2 className="mb-4 mt-2 text-4xl font-bold">{blogPost.title}</h2>
+        <h2 className="mt-2 mb-4 text-4xl font-bold">{blogPost.title}</h2>
         <div className="flex items-center">
-          {/*{blogPost.authors.map((author) => (*/}
-          {/*  <p key={author} className="ml-4 text-gray-500">*/}
-          {/*    {author}*/}
-          {/*  </p>*/}
-          {/*))}*/}
           <p className="text-gray-500">Alireza</p>
           <div className="mx-4 text-gray-500">|</div>
           <p className="text-gray-500">
@@ -82,13 +77,13 @@ const BlogPostPage: NextPage<Props> = async (props) => {
       </div>
       <ReactMarkdown
         rehypePlugins={[rehypeRaw, rehypeExternalLinks]}
-        className="prose max-w-none text-justify leading-tight xl:prose-lg 2xl:prose-xl"
+        className="prose xl:prose-lg 2xl:prose-xl max-w-none text-justify leading-tight"
       >
         {blogPost.content as string}
       </ReactMarkdown>
       <div>
         <div>
-          <h3 className="mb-4 mt-8 text-2xl font-bold">Tags</h3>
+          <h3 className="mt-8 mb-4 text-2xl font-bold">Tags</h3>
         </div>
         <div className="mt-2 flex items-center">
           {blogPost.tags.map((tag) => (
@@ -103,6 +98,4 @@ const BlogPostPage: NextPage<Props> = async (props) => {
       </div>
     </article>
   );
-};
-
-export default BlogPostPage;
+}

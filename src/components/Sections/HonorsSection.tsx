@@ -26,7 +26,7 @@ export default function HonorsSection({ honors }: { honors: Honor[] }) {
           <HonorIcon />
           <ReactMarkdown
             rehypePlugins={[rehypeRaw, rehypeExternalLinks]}
-            className="prose max-w-none text-justify leading-tight xl:prose-lg 2xl:prose-xl"
+            className="prose xl:prose-lg 2xl:prose-xl max-w-none text-justify leading-tight"
           >
             {honor.description}
           </ReactMarkdown>

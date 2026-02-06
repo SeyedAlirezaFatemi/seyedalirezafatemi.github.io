@@ -44,6 +44,7 @@ export function HomeSection({
                 src={Photo}
                 placeholder="blur"
                 alt="Photo of Alireza Fatemi"
+                sizes="192px"
               />
             </div>
           </div>
@@ -52,9 +53,7 @@ export function HomeSection({
               <span className="inline-block">
                 Software & Machine Learning Engineer
               </span>
-              <span className="block">
-              Game Designer & Developer
-              </span>
+              <span className="block">Game Designer & Developer</span>
               <span className="my-2 inline-block text-gray-500">
                 Passionate about Game Development, Visual Computing, Machine
                 Learning, Computer Graphics, and Extended Reality
@@ -136,14 +135,14 @@ export function HomeSection({
             </span>
             <div
               tabIndex={0}
-              className="collapse collapse-arrow mt-2 border border-base-300 bg-base-200"
+              className="collapse-arrow border-base-300 bg-base-200 collapse mt-2 border"
             >
               <input type="checkbox" />
               <div className="collapse-title">Course Highlights</div>
               <div className="collapse-content">
                 <ReactMarkdown
                   rehypePlugins={[rehypeRaw, rehypeExternalLinks]}
-                  className="prose max-w-none pt-1 text-justify leading-tight prose-ul:-mt-2"
+                  className="prose prose-ul:-mt-2 max-w-none pt-1 text-justify leading-tight"
                 >
                   {educationItem.description}
                 </ReactMarkdown>
@@ -165,7 +164,7 @@ export function HomeSection({
             </span>
             <ReactMarkdown
               rehypePlugins={[rehypeRaw, rehypeExternalLinks]}
-              className="prose max-w-none pt-1 text-justify leading-tight prose-ul:-mt-2"
+              className="prose prose-ul:-mt-2 max-w-none pt-1 text-justify leading-tight"
             >
               {profDevItem.description}
             </ReactMarkdown>
@@ -176,7 +175,7 @@ export function HomeSection({
       <SectionHeader className="pb-2 text-center">Skills</SectionHeader>
       <section>
         {skills.map((it) => (
-          <div className="pb-2 pt-4 text-center md:text-left" key={it.title}>
+          <div className="pt-4 pb-2 text-center md:text-left" key={it.title}>
             <p className="text-lg font-bold">{it.title}</p>
             <ul>
               {it.items.map((skill) => (

@@ -97,7 +97,7 @@ const getEducationItems = async () => {
   ];
 };
 
-const getStaticProps = async () => {
+const fetchHomePageData = async () => {
   const [educationItems, profDevItems] = (await getEducationItems()) as [
     EducationItem[],
     ProfessionalDevelopmentItem[],
@@ -114,7 +114,7 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const { educationItems, profDevItems } = await getStaticProps();
+  const { educationItems, profDevItems } = await fetchHomePageData();
   return (
     <main>
       <HomeSection

@@ -58,7 +58,7 @@ const getAllExperiences = async () => {
   }));
 };
 
-const getStaticProps = async () => {
+const fetchWorkPageData = async () => {
   const data = (await getAllExperiences()) as Experience[];
 
   return {
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
 };
 
 export default async function WorkPage() {
-  const { experiences } = await getStaticProps();
+  const { experiences } = await fetchWorkPageData();
   return (
     <main>
       <WorkSection experiences={experiences} />

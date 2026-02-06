@@ -65,7 +65,7 @@ export default function Header() {
             className="drawer-overlay"
             onClick={handleLinkClick}
           ></label>
-          <ul className="menu min-h-full w-80 bg-base-200 p-4">
+          <ul className="menu bg-base-200 min-h-full w-80 p-4">
             <li onClick={handleLinkClick}>
               <Link href="/">Home</Link>
             </li>

@@ -45,7 +45,7 @@ const getAllHonors = async () => {
   }));
 };
 
-const getStaticProps = async () => {
+const fetchHonorsPageData = async () => {
   const data = (await getAllHonors()) as Honor[];
 
   return {
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
 };
 
 export default async function HonorsPage() {
-  const { honors } = await getStaticProps();
+  const { honors } = await fetchHonorsPageData();
 
   return (
     <main>
