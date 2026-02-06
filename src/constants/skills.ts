@@ -38,7 +38,7 @@ export const skills: SkillSet[] = [
       {
         name: 'Luau',
         href: 'https://luau.org/',
-      }
+      },
     ],
   },
   {

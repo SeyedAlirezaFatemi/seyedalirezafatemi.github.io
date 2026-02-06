@@ -2,12 +2,13 @@
 
 import { useEffect } from 'react';
 import * as Sentry from '@sentry/nextjs';
-import NextError from 'next/error';
 
 export default function GlobalError({
   error,
+  reset,
 }: {
   error: Error & { digest?: string };
+  reset: () => void;
 }) {
   useEffect(() => {
     Sentry.captureException(error);
@@ -16,9 +17,8 @@ export default function GlobalError({
   return (
     <html>
       <body>
-        {/* This is the default Next.js error component but it doesn't allow omitting the statusCode property yet. */}
-        {/* eslint-disable-next-line  */}
-        <NextError statusCode={undefined as any} />
+        <h2>Something went wrong!</h2>
+        <button onClick={() => reset()}>Try again</button>
       </body>
     </html>
   );

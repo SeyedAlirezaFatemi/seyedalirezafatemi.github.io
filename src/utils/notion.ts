@@ -1,10 +1,9 @@
-import { n2m, notionClient } from '@/components/Notion/client';
+import { n2m, queryDatabase } from '@/components/Notion/client';
 import type { BlogPost, NotionBlogDto } from '@/features/blog/@types';
 
 export async function getBlogPosts(): Promise<BlogPost[]> {
   const databaseId = process.env.BLOG_DATABASE_ID as string;
-  const response = await notionClient.databases.query({
-    database_id: databaseId,
+  const response = await queryDatabase(databaseId, {
     filter: {
       property: 'published',
       checkbox: {
@@ -31,8 +30,7 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
 
 export async function getBlogPost(slug: string): Promise<BlogPost> {
   const databaseId = process.env.BLOG_DATABASE_ID as string;
-  const response = await notionClient.databases.query({
-    database_id: databaseId,
+  const response = await queryDatabase(databaseId, {
     filter: {
       property: 'slug',
       formula: {

@@ -18,14 +18,11 @@ export default function Header() {
           type="checkbox"
           className="drawer-toggle"
           checked={isChecked}
-          // onChange={(e) => setIsChecked(e.target.checked)}
+          onChange={(e) => setIsChecked(e.target.checked)}
         />
         <div className="drawer-content flex flex-col">
           <div className="navbar w-full">
-            <div
-              className="absolute flex-none lg:hidden"
-              onClick={() => setIsChecked(true)}
-            >
+            <div className="absolute flex-none lg:hidden">
               <label
                 htmlFor="my-drawer"
                 aria-label="open sidebar"
@@ -63,9 +60,8 @@ export default function Header() {
             htmlFor="my-drawer"
             aria-label="close sidebar"
             className="drawer-overlay"
-            onClick={handleLinkClick}
           ></label>
-          <ul className="menu min-h-full w-80 bg-base-200 p-4">
+          <ul className="menu bg-base-200 min-h-full w-80 p-4">
             <li onClick={handleLinkClick}>
               <Link href="/">Home</Link>
             </li>

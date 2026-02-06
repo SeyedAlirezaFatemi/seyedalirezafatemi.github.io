@@ -60,7 +60,7 @@ function WorkItem({
     <div className="text-start">
       <h3
         className={twMerge(
-          'block w-fit text-center text-xl font-semibold uppercase tracking-wide no-underline',
+          'block w-fit text-center text-xl font-semibold tracking-wide uppercase no-underline',
           'bg-gradient-to-r from-sky-500 to-indigo-500 bg-no-repeat',
           styles.link
         )}
@@ -73,7 +73,7 @@ function WorkItem({
       <span className="text-sm text-zinc-500">{date}</span>
       <ReactMarkdown
         rehypePlugins={[rehypeRaw, rehypeExternalLinks]}
-        className="prose max-w-none pt-1 text-justify leading-tight xl:prose-lg 2xl:prose-xl"
+        className="prose xl:prose-lg 2xl:prose-xl max-w-none pt-1 text-justify leading-tight"
       >
         {description}
       </ReactMarkdown>
