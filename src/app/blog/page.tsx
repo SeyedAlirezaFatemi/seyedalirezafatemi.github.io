@@ -22,19 +22,19 @@ export default async function BlogPosts() {
       <ul>
         {blogPosts.map((post) => (
           <li key={post.title} className="mb-8">
-            <div className="flex">
+            <div className="flex flex-col sm:flex-row">
               {post.cover ? (
-                <div className="relative mr-4 h-[200px] w-[200px] shrink-0">
+                <div className="relative h-[200px] w-full shrink-0 sm:mr-4 sm:w-[200px]">
                   <Image
                     fill
                     className="rounded-md object-cover"
                     src={post.cover}
                     alt={post.title}
-                    sizes="200px"
+                    sizes="(max-width: 640px) 100vw, 200px"
                   />
                 </div>
               ) : null}
-              <div className="flex flex-col">
+              <div className="mt-3 flex flex-col sm:mt-0">
                 <Link
                   className="text-2xl font-bold text-blue-500 hover:underline"
                   href={`/blog/${post.slug}`}
@@ -58,7 +58,7 @@ export default async function BlogPosts() {
                 </p>
               </div>
               {!!post.tags.length && (
-                <div className="mt-2 flex items-center">
+                <div className="mt-2 flex flex-wrap items-center gap-y-1">
                   <span className="mr-2 text-gray-500">Tags:</span>
                   {post.tags.map((tag) => (
                     <span
