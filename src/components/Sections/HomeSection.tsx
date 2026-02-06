@@ -133,10 +133,7 @@ export function HomeSection({
             <span className="block text-sm text-gray-500">
               {educationItem.date}
             </span>
-            <div
-              tabIndex={0}
-              className="collapse-arrow border-base-300 bg-base-200 collapse mt-2 border"
-            >
+            <div className="collapse-arrow border-base-300 bg-base-200 collapse mt-2 border">
               <input type="checkbox" />
               <div className="collapse-title">Course Highlights</div>
               <div className="collapse-content">
