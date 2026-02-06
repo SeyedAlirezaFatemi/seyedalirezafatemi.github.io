@@ -24,14 +24,15 @@ export default async function BlogPosts() {
           <li key={post.title} className="mb-8">
             <div className="flex">
               {post.cover ? (
-                <Image
-                  width={150}
-                  height={150}
-                  className="mr-4 rounded-md md:block"
-                  src={post.cover}
-                  alt={post.title}
-                  sizes="150px"
-                />
+                <div className="relative mr-4 h-[200px] w-[200px] shrink-0">
+                  <Image
+                    fill
+                    className="rounded-md object-cover"
+                    src={post.cover}
+                    alt={post.title}
+                    sizes="200px"
+                  />
+                </div>
               ) : null}
               <div className="flex flex-col">
                 <Link
