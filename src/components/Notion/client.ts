@@ -1,5 +1,6 @@
 import { NotionToMarkdown } from 'notion-to-md';
 import { Client } from '@notionhq/client';
+import type { QueryDataSourceParameters } from '@notionhq/client/build/src/api-endpoints';
 
 export const notionClient = new Client({
   auth: process.env.NOTION_TOKEN,
@@ -36,7 +37,7 @@ async function getDataSourceId(databaseId: string): Promise<string> {
 
 export async function queryDatabase(
   databaseId: string,
-  body: Record<string, unknown> = {}
+  body: Omit<QueryDataSourceParameters, 'data_source_id'> = {}
 ) {
   const dataSourceId = await getDataSourceId(databaseId);
   return notionClient.dataSources.query({
