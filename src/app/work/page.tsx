@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { n2m, notionClient } from '@/components/Notion/client';
+import { n2m, queryDatabase } from '@/components/Notion/client';
 import type { Experience } from '@/components/Sections/WorkSection';
 import WorkSection from '@/components/Sections/WorkSection';
 import type {
@@ -29,15 +29,17 @@ type NotionExperienceResponse = PageObjectResponse & {
 };
 
 const getAllExperiences = async () => {
-  const experiences = await notionClient.databases.query({
-    database_id: process.env.WORK_DATABASE_ID as string,
-    sorts: [
-      {
-        property: 'Order',
-        direction: 'descending',
-      },
-    ],
-  });
+  const experiences = await queryDatabase(
+    process.env.WORK_DATABASE_ID as string,
+    {
+      sorts: [
+        {
+          property: 'Order',
+          direction: 'descending',
+        },
+      ],
+    }
+  );
 
   const allExperiences = experiences.results as NotionExperienceResponse[];
   for (const experience of allExperiences) {

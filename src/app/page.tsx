@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { n2m, notionClient } from '@/components/Notion/client';
+import { n2m, queryDatabase } from '@/components/Notion/client';
 import {
   type EducationItem,
   type ProfessionalDevelopmentItem,
@@ -44,25 +44,29 @@ type NotionProfessionalDevelopmentResponse = PageObjectResponse & {
 };
 
 const getEducationItems = async () => {
-  const education = await notionClient.databases.query({
-    database_id: process.env.EDUCATION_DATABASE_ID as string,
-    sorts: [
-      {
-        property: 'Order',
-        direction: 'descending',
-      },
-    ],
-  });
+  const education = await queryDatabase(
+    process.env.EDUCATION_DATABASE_ID as string,
+    {
+      sorts: [
+        {
+          property: 'Order',
+          direction: 'descending',
+        },
+      ],
+    }
+  );
 
-  const professionalDevelopment = await notionClient.databases.query({
-    database_id: process.env.PROFESSIONAL_DEVELOPMENT_DATABASE_ID as string,
-    sorts: [
-      {
-        property: 'Order',
-        direction: 'descending',
-      },
-    ],
-  });
+  const professionalDevelopment = await queryDatabase(
+    process.env.PROFESSIONAL_DEVELOPMENT_DATABASE_ID as string,
+    {
+      sorts: [
+        {
+          property: 'Order',
+          direction: 'descending',
+        },
+      ],
+    }
+  );
 
   const educationItems = education.results as NotionEducationResponse[];
   const professionalDevelopmentItems =

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { n2m, notionClient } from '@/components/Notion/client';
+import { n2m, queryDatabase } from '@/components/Notion/client';
 import type { Honor } from '@/components/Sections/HonorsSection';
 import HonorsSection from '@/components/Sections/HonorsSection';
 import type {
@@ -20,8 +20,7 @@ type NotionHonorResponse = PageObjectResponse & {
 };
 
 const getAllHonors = async () => {
-  const honors = await notionClient.databases.query({
-    database_id: process.env.HONORS_DATABASE_ID as string,
+  const honors = await queryDatabase(process.env.HONORS_DATABASE_ID as string, {
     sorts: [
       {
         property: 'Order',

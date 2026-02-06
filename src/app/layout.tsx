@@ -39,7 +39,7 @@ export function generateMetadata(): Metadata {
 
 const MainLayout = ({ children }: MainLayoutProps) => {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className="mx-auto max-w-4xl p-4">
         {process.env.NODE_ENV === 'production' && (
           <>

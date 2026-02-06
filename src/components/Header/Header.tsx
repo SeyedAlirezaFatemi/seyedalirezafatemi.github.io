@@ -18,7 +18,7 @@ export default function Header() {
           type="checkbox"
           className="drawer-toggle"
           checked={isChecked}
-          // onChange={(e) => setIsChecked(e.target.checked)}
+          onChange={(e) => setIsChecked(e.target.checked)}
         />
         <div className="drawer-content flex flex-col">
           <div className="navbar w-full">

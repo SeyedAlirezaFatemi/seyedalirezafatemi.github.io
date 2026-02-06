@@ -7,5 +7,14 @@ type ProvidersProps = {
   children: ReactNode;
 };
 export const Providers = ({ children }: ProvidersProps) => {
-  return <ThemeProvider>{children}</ThemeProvider>;
+  return (
+    <ThemeProvider
+      attribute="data-theme"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange
+    >
+      {children}
+    </ThemeProvider>
+  );
 };
