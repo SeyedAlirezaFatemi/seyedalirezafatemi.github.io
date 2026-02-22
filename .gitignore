@@ -55,3 +55,6 @@ cypress/screenshots
 
 # Sentry Config File
 .sentryclirc
+
+# Downloaded blog covers (generated at build time)
+public/blog-covers
