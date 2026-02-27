@@ -14,6 +14,10 @@ async function downloadCoverImage(
     const filename = `${slug}.${ext}`;
     const filePath = path.join(COVERS_DIR, filename);
 
+    if (fs.existsSync(filePath)) {
+      return `/blog-covers/${filename}`;
+    }
+
     fs.mkdirSync(COVERS_DIR, { recursive: true });
 
     const response = await fetch(url);
