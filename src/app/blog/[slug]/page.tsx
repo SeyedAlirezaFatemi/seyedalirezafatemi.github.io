@@ -3,7 +3,7 @@ import ReactMarkdown from 'react-markdown';
 import type { Metadata } from 'next';
 import rehypeExternalLinks from 'rehype-external-links';
 import rehypeRaw from 'rehype-raw';
-import { getBlogPost } from '@/utils/notion';
+import { getBlogPost, getBlogPosts } from '@/utils/notion';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
@@ -18,6 +18,11 @@ const fetchBlogPostData = async (slug: string) => {
     blogPost,
   };
 };
+
+export async function generateStaticParams() {
+  const posts = await getBlogPosts();
+  return posts.map((post) => ({ slug: post.slug }));
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;

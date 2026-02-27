@@ -45,8 +45,7 @@ export interface Cover {
   type: 'file' | 'external';
 }
 
-export interface File {
-  expiry_time: string;
+export interface External {
   url: string;
 }
 

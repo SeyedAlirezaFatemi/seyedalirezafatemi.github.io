@@ -50,7 +50,8 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
       slug: page.properties.slug.formula.string,
       published: page.properties.published.checkbox.valueOf(),
       tags: page.properties.tags.multi_select.map((tag) => tag.name),
-      notionCoverUrl: page.cover?.file?.url ?? null,
+      notionCoverUrl:
+        page.cover?.file?.url ?? page.cover?.external?.url ?? null,
     }))
     .sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf());
 
@@ -85,7 +86,8 @@ export async function getBlogPost(slug: string): Promise<BlogPost> {
 
   const content = n2m.toMarkdownString(pageMarkdown).parent;
 
-  const notionCoverUrl = page.cover?.file?.url ?? null;
+  const notionCoverUrl =
+    page.cover?.file?.url ?? page.cover?.external?.url ?? null;
   const postSlug = page.properties.slug.formula.string;
   const cover = notionCoverUrl
     ? await downloadCoverImage(notionCoverUrl, postSlug)
