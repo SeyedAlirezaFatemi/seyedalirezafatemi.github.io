@@ -10,6 +10,7 @@ const nextConfig: NextConfig = {
         protocol: 'https',
       },
     ],
+    minimumCacheTTL: 1800,
   },
 };
 
@@ -17,7 +18,6 @@ const sentryBuildOptions = {
   org: 'alireza-fatemi',
   project: 'personal-website',
   widenClientFileUpload: true,
-  tunnelRoute: '/monitoring',
   hideSourceMaps: true,
   disableLogger: true,
 };

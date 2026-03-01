@@ -1,36 +1,5 @@
-import fs from 'node:fs';
-import path from 'node:path';
 import { n2m, queryDatabase } from '@/components/Notion/client';
 import type { BlogPost, NotionBlogDto } from '@/features/blog/@types';
-
-const COVERS_DIR = path.join(process.cwd(), 'public', 'blog-covers');
-
-async function downloadCoverImage(
-  url: string,
-  slug: string
-): Promise<string | null> {
-  try {
-    const ext = new URL(url).pathname.split('.').pop() ?? 'png';
-    const filename = `${slug}.${ext}`;
-    const filePath = path.join(COVERS_DIR, filename);
-
-    if (fs.existsSync(filePath)) {
-      return `/blog-covers/${filename}`;
-    }
-
-    fs.mkdirSync(COVERS_DIR, { recursive: true });
-
-    const response = await fetch(url);
-    if (!response.ok) return null;
-
-    const buffer = Buffer.from(await response.arrayBuffer());
-    fs.writeFileSync(filePath, buffer);
-
-    return `/blog-covers/${filename}`;
-  } catch {
-    return null;
-  }
-}
 
 export async function getBlogPosts(): Promise<BlogPost[]> {
   const databaseId = process.env.BLOG_DATABASE_ID as string;
@@ -54,21 +23,11 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
       slug: page.properties.slug.formula.string,
       published: page.properties.published.checkbox.valueOf(),
       tags: page.properties.tags.multi_select.map((tag) => tag.name),
-      notionCoverUrl:
-        page.cover?.file?.url ?? page.cover?.external?.url ?? null,
+      cover: page.cover?.file?.url ?? page.cover?.external?.url ?? null,
     }))
     .sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf());
 
-  const postsWithCovers = await Promise.all(
-    posts.map(async ({ notionCoverUrl, ...post }) => ({
-      ...post,
-      cover: notionCoverUrl
-        ? await downloadCoverImage(notionCoverUrl, post.slug)
-        : null,
-    }))
-  );
-
-  return postsWithCovers;
+  return posts;
 }
 
 export async function getBlogPost(slug: string): Promise<BlogPost> {
@@ -90,12 +49,8 @@ export async function getBlogPost(slug: string): Promise<BlogPost> {
 
   const content = n2m.toMarkdownString(pageMarkdown).parent;
 
-  const notionCoverUrl =
-    page.cover?.file?.url ?? page.cover?.external?.url ?? null;
+  const cover = page.cover?.file?.url ?? page.cover?.external?.url ?? null;
   const postSlug = page.properties.slug.formula.string;
-  const cover = notionCoverUrl
-    ? await downloadCoverImage(notionCoverUrl, postSlug)
-    : null;
 
   return {
     title: page.properties.title.title[0].text.content,

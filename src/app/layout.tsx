@@ -11,7 +11,7 @@ export type MainLayoutProps = {
   children: React.ReactNode;
 };
 
-export const revalidate = 3600;
+export const revalidate = 1800;
 
 export function generateMetadata(): Metadata {
   return {
