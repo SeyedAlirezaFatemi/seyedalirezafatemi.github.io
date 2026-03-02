@@ -1,6 +1,10 @@
 import { NotionToMarkdown } from 'notion-to-md';
 import { Client } from '@notionhq/client';
-import type { QueryDataSourceParameters } from '@notionhq/client/build/src/api-endpoints';
+import type {
+  ImageBlockObjectResponse,
+  QueryDataSourceParameters,
+  VideoBlockObjectResponse,
+} from '@notionhq/client/build/src/api-endpoints';
 
 export const notionClient = new Client({
   auth: process.env.NOTION_TOKEN,
@@ -9,11 +13,22 @@ export const notionClient = new Client({
 const n2m = new NotionToMarkdown({ notionClient });
 
 n2m.setCustomTransformer('video', async (block) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { video } = block as any;
-  const { type } = video;
-  const video_url = video[type].url;
+  const { video } = block as VideoBlockObjectResponse;
+  const video_url = video.type === 'file' ? video.file.url : video.external.url;
   return `<iframe class="w-full h-96" src="${video_url}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+});
+
+n2m.setCustomTransformer('image', async (block) => {
+  const imageBlock = block as ImageBlockObjectResponse;
+  const { image } = imageBlock;
+  const caption = image.caption.map((c) => c.plain_text).join('');
+  let src: string;
+  if (image.type === 'file') {
+    src = `/notion-image/block/${imageBlock.id}/${encodeURIComponent(imageBlock.last_edited_time)}`;
+  } else {
+    src = image.external.url;
+  }
+  return `![${caption}](${src})`;
 });
 
 // Notion SDK v5 / API 2025-09-03: databases.query() is replaced by dataSources.query().

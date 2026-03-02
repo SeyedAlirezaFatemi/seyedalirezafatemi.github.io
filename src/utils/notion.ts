@@ -1,6 +1,10 @@
 import { n2m, queryDatabase } from '@/components/Notion/client';
 import type { BlogPost, NotionBlogDto } from '@/features/blog/@types';
 
+function coverProxyUrl(pageId: string, lastEditedTime: string) {
+  return `/notion-image/page/${pageId}/${encodeURIComponent(lastEditedTime)}`;
+}
+
 export async function getBlogPosts(): Promise<BlogPost[]> {
   const databaseId = process.env.BLOG_DATABASE_ID as string;
   const response = await queryDatabase(databaseId, {
@@ -23,7 +27,10 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
       slug: page.properties.slug.formula.string,
       published: page.properties.published.checkbox.valueOf(),
       tags: page.properties.tags.multi_select.map((tag) => tag.name),
-      cover: page.cover?.file?.url ?? page.cover?.external?.url ?? null,
+      cover:
+        page.cover?.type === 'file'
+          ? coverProxyUrl(page.id, page.last_edited_time)
+          : (page.cover?.external?.url ?? null),
     }))
     .sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf());
 
@@ -49,7 +56,10 @@ export async function getBlogPost(slug: string): Promise<BlogPost> {
 
   const content = n2m.toMarkdownString(pageMarkdown).parent;
 
-  const cover = page.cover?.file?.url ?? page.cover?.external?.url ?? null;
+  const cover =
+    page.cover?.type === 'file'
+      ? coverProxyUrl(page.id, page.last_edited_time)
+      : (page.cover?.external?.url ?? null);
   const postSlug = page.properties.slug.formula.string;
 
   return {
